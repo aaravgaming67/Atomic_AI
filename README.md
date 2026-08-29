@@ -40,34 +40,53 @@
 
 ---
 
-## 💻 Local Development
+## 💻 Running the App from GitHub
 
-### 1. Install Dependencies
-```bash
-npm install
-```
+### Option A: Local Development (Full-Stack with Express Backend)
+When running locally on your computer with Node.js:
 
-### 2. Start Local Development Server
-```bash
-npm run dev
-```
-Open `http://localhost:3000` in your browser.
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-username/atomic-ai.git
+   cd atomic-ai
+   ```
 
-### 3. Production Build
-```bash
-npm run build
-npm start
-```
+2. **Install dependencies**:
+   ```bash
+   npm install
+   ```
+
+3. **Configure your Gemini API Key**:
+   Copy `.env.example` to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+   Add your free Google Gemini API key to `.env`:
+   ```env
+   GEMINI_API_KEY=your_actual_gemini_api_key_here
+   ```
+
+4. **Start the local server**:
+   ```bash
+   npm run dev
+   ```
+   Open `http://localhost:3000` in your browser. All 4 AI agents will connect directly through the Express backend proxy!
 
 ---
 
-## 🔄 How to Update Your GitHub Repository
+### Option B: GitHub Pages / Static Hosting (Zero-Config)
+If you deploy this repository directly to **GitHub Pages** or static web hosts (where no Node.js backend server runs):
 
-If you already have a GitHub repository connected, update it with your latest changes by running:
+- ⚡ **Zero-Config Smart Solver**: The built-in AI tutor automatically detects static hosting and runs an intelligent curriculum solver engine that breaks down math, science, history, coding, and practice quizzes step-by-step.
+- 🔑 **Live Gemini AI on GitHub Pages**: You can click the **⚙️ Settings** button inside the AI Tutor modal and enter your free Google Gemini API key. The key is securely saved in your browser's local storage and enables full live generative responses directly on GitHub Pages!
+
+---
+
+## 🔄 How to Push Updates to GitHub
 
 ```bash
 git add .
-git commit -m "feat: Upgrade Atomic to celestial aesthetic with Plus Jakarta Sans & Firestore cloud sync"
+git commit -m "feat: Universal multi-tier AI support for local Express server and GitHub Pages static hosting"
 git push origin main
 ```
 

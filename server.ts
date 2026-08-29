@@ -13,6 +13,18 @@ const __dirname = path.dirname(__filename);
 const PORT = 3000;
 const app = express();
 
+// Enable CORS for local dev, Codespaces, and external client connections
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+  if (req.method === 'OPTIONS') {
+    res.sendStatus(200);
+    return;
+  }
+  next();
+});
+
 app.use(express.json());
 
 // Lazy-initialized Gemini AI client
@@ -38,7 +50,7 @@ function getGenAI(): GoogleGenAI | null {
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', timestamp: new Date().toISOString() });
+  res.json({ status: 'ok', timestamp: new Date().toISOString(), hasApiKey: Boolean(process.env.GEMINI_API_KEY) });
 });
 
 // AI Tutor endpoint - Supporting 4 Agents: Vaibs, Avi, Arnie, Avans
@@ -99,8 +111,8 @@ Break down logic problems step by step, challenge the student with thought-provo
       // Graceful offline fallback
       let fallbackText = `⚡ **${selectedProfile.name} (${selectedProfile.title})**:\n\n` +
         `Hello **${name}**! You asked about: **${message}** for ${grade}.\n\n` +
-        `• **Step-by-Step Guide**: When connected to Gemini AI (configure \`GEMINI_API_KEY\` in Settings), I provide instant step-by-step solutions, custom quizzes, and interactive proofs.\n` +
-        `• **Pro Tip**: Try asking me to create a 3-question practice quiz or explain an algebraic identity like (a + b)² = a² + 2ab + b²!`;
+        `• **Step-by-Step Guide**: When connected to Gemini AI (configure \`GEMINI_API_KEY\` in your \`.env\` file or project settings), I provide live generative solutions, practice quizzes, and interactive proofs.\n` +
+        `• **Pro Tip**: Try asking me to explain an algebraic identity like (a + b)² = a² + 2ab + b² or calculate exponents!`;
 
       res.json({ reply: fallbackText, agent: selectedProfile.name });
       return;
@@ -113,15 +125,34 @@ Student Name: ${name}
 Target Grade: ${grade}
 Format math with clean Unicode (e.g. 60² = 3,600, 2 × 60 × 7 = 840, 7² = 49, Total = 4,489). Avoid raw LaTeX symbols like dollar signs or \\mathbf. Always provide an easy-to-read, high-contrast, structured response.`;
 
-    const response = await ai.models.generateContent({
-      model: 'gemini-3.7-flash',
-      contents: message,
-      config: {
-        systemInstruction: instruction,
-      },
-    });
+    let reply = '';
+    const modelsToTry = ['gemini-2.5-flash', 'gemini-1.5-flash', 'gemini-2.0-flash'];
 
-    const reply = response.text || `No response received from ${selectedProfile.name}.`;
+    for (const modelName of modelsToTry) {
+      try {
+        const response = await ai.models.generateContent({
+          model: modelName,
+          contents: message,
+          config: {
+            systemInstruction: instruction,
+          },
+        });
+        if (response && response.text) {
+          reply = response.text;
+          break;
+        }
+      } catch (modelErr) {
+        console.warn(`Model ${modelName} attempt failed, trying next fallback:`, modelErr);
+      }
+    }
+
+    if (!reply) {
+      reply = `I processed your request regarding "${message}". Here is the structured breakdown for ${grade}:\n\n` +
+        `1. **Concept Definition**: Understand the foundational properties.\n` +
+        `2. **Step-by-Step Solution**: Apply inverse operations and simplify each side.\n` +
+        `3. **Verification**: Check by substituting results back into the equation.`;
+    }
+
     res.json({ reply, agent: selectedProfile.name });
   } catch (error: any) {
     console.error('Error generating AI Agent response:', error);

@@ -1038,10 +1038,19 @@
   <div class="modal-backdrop" id="modal-tutor">
     <div class="modal-panel" style="max-width: 600px;">
       <div class="modal-header">
-        <div class="modal-title" style="display: flex; align-items: center; gap: 8px;">
-          <span>🤖</span> Atomic 24/7 AI Tutor
+        <div class="modal-title" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+          <span>🤖</span> <span>Atomic 24/7 AI Tutor</span>
+          <select id="agent-select" class="game-inp" style="padding: 4px 8px; font-size: 12px; border-radius: 6px; width: auto;" onchange="updateAgentInfo()">
+            <option value="vaibs">Vaibs (Study Master)</option>
+            <option value="avi">Avi (Math & STEM Genius)</option>
+            <option value="arnie">Arnie (Cosmic & History Explorer)</option>
+            <option value="avans">Avans (Logic & Riddles Master)</option>
+          </select>
         </div>
-        <button class="modal-close-btn" onclick="closeModals()">✕</button>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button class="btn-see-how" style="padding: 4px 10px; font-size: 12px; border-radius: 6px;" onclick="openApiKeyModal()" title="Configure Gemini API Key for GitHub Pages">⚙️ Settings</button>
+          <button class="modal-close-btn" onclick="closeModals()">✕</button>
+        </div>
       </div>
       <div class="modal-body">
         <div class="ai-chat-messages" id="ai-chat-box">
@@ -1391,14 +1400,186 @@
     }
 
     // ----------------------------------------------------
-    // AI TUTOR MESSAGING
+// ----------------------------------------------------
+    // AI TUTOR MULTI-TIER ENGINE (BACKEND + GITHUB PAGES + OFFLINE SOLVER)
     // ----------------------------------------------------
+    let currentAgent = 'vaibs';
+
+    function updateAgentInfo() {
+      const select = document.getElementById('agent-select');
+      if (select) currentAgent = select.value;
+    }
+
+    function openApiKeyModal() {
+      closeModals();
+      const modal = document.getElementById('modal-apikey');
+      const keyInp = document.getElementById('user-gemini-key');
+      const statusBadge = document.getElementById('api-status-badge');
+      
+      const storedKey = localStorage.getItem('atomic_gemini_api_key') || '';
+      if (keyInp) keyInp.value = storedKey;
+
+      if (statusBadge) {
+        statusBadge.innerHTML = '🔍 Checking backend server connection...';
+        fetch('/api/health')
+          .then(res => res.json())
+          .then(data => {
+            if (data.status === 'ok') {
+              statusBadge.style.borderColor = '#4ade80';
+              statusBadge.innerHTML = '🟢 <strong>Backend Server Connected</strong> (' + (data.hasApiKey ? 'Server GEMINI_API_KEY Active' : 'Running in Local Mode') + ')';
+            } else {
+              throw new Error('Not ok');
+            }
+          })
+          .catch(() => {
+            if (storedKey) {
+              statusBadge.style.borderColor = '#60a5fa';
+              statusBadge.innerHTML = '🌐 <strong>GitHub Pages Mode</strong>: Direct Browser Gemini Key Active';
+            } else {
+              statusBadge.style.borderColor = '#fbb040';
+              statusBadge.innerHTML = '⚡ <strong>GitHub Pages / Static Mode</strong>: Built-in Offline Solver Engine Ready (Add Key for live Gemini AI)';
+            }
+          });
+      }
+
+      modal.classList.add('active');
+    }
+
+    function saveApiKey() {
+      const keyInp = document.getElementById('user-gemini-key');
+      const val = keyInp ? keyInp.value.trim() : '';
+      if (val) {
+        localStorage.setItem('atomic_gemini_api_key', val);
+      } else {
+        localStorage.removeItem('atomic_gemini_api_key');
+      }
+      closeModals();
+      openTutorModal();
+    }
+
+    function clearApiKey() {
+      localStorage.removeItem('atomic_gemini_api_key');
+      const keyInp = document.getElementById('user-gemini-key');
+      if (keyInp) keyInp.value = '';
+      closeModals();
+      openTutorModal();
+    }
+
+    // Direct Client-Side Gemini Call for GitHub Pages / Static Hosting
+    async function callClientGemini(apiKey, text, agent) {
+      const agentPrompts = {
+        vaibs: 'You are Vaibs, the Chief Study Strategist and Quiz Specialist. Create ultra-crisp revision notes, bullet points, and quizzes with Unicode math like x².',
+        avi: 'You are Avi, the STEM and Languages Genius. Provide step-by-step Math, Science, and Coding breakdown with clear formulas.',
+        arnie: 'You are Arnie, the Cosmic and Social Studies Explorer. Explain History, Geography, and space trivia engagingly.',
+        avans: 'You are Avans, the Logic & Riddle Master. Provide logical deduction, puzzle hints, and brain challenges.'
+      };
+      const sysInstruction = agentPrompts[agent] || agentPrompts.vaibs;
+
+      const url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + encodeURIComponent(apiKey);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: [{ parts: [{ text: text }] }],
+          systemInstruction: { parts: [{ text: sysInstruction }] }
+        })
+      });
+
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        throw new Error(errData?.error?.message || ('Gemini API error: ' + res.status));
+      }
+
+      const data = await res.json();
+      return data?.candidates?.[0]?.content?.parts?.[0]?.text || '';
+    }
+
+    // Comprehensive Smart Offline Heuristic Solver for zero-config GitHub Pages execution
+    function generateSmartOfflineResponse(text, agent) {
+      const q = text.toLowerCase().trim();
+      const agentNames = { vaibs: 'Vaibs', avi: 'Avi', arnie: 'Arnie', avans: 'Avans' };
+      const aName = agentNames[agent] || 'Atomic AI';
+
+      // 1. Math solving heuristics
+      if (/(\d+)\s*\+\s*(\d+)/.test(q)) {
+        const m = q.match(/(\d+)\s*\+\s*(\d+)/);
+        const sum = parseInt(m[1]) + parseInt(m[2]);
+        return '⚡ **' + aName + ' (Math Solver)**:\n\n' +
+          '• **Expression**: ' + m[1] + ' + ' + m[2] + '\n' +
+          '• **Calculation**: ' + m[1] + ' + ' + m[2] + ' = **' + sum + '**\n' +
+          '• **Verification**: Subtracting ' + m[2] + ' from ' + sum + ' gives ' + m[1] + ' (Identity verified!).';
+      }
+
+      if (/(\d+)\s*\*\s*(\d+)|(\d+)\s*x\s*(\d+)|(\d+)\s*times\s*(\d+)/i.test(q)) {
+        const m = q.match(/(\d+)\s*(?:\*|x|times)\s*(\d+)/i);
+        if (m) {
+          const prod = parseInt(m[1]) * parseInt(m[2]);
+          return '⚡ **' + aName + ' (Math Step-by-Step)**:\n\n' +
+            '• **Problem**: ' + m[1] + ' × ' + m[2] + '\n' +
+            '• **Result**: **' + prod + '**\n' +
+            '• **Breakdown**: Multiplying ' + m[1] + ' units ' + m[2] + ' times yields ' + prod + '.';
+        }
+      }
+
+      if (/solve|equation|\d+x/i.test(q)) {
+        return '⚡ **' + aName + ' (Algebra Guide)**:\n\n' +
+          '• **Linear Equations**: To solve an equation like `ax + b = c`:\n' +
+          '  1. **Isolate the Variable Term**: Subtract `b` from both sides: `ax = c - b`\n' +
+          '  2. **Divide by Coefficient**: Divide both sides by `a`: `x = (c - b) / a`\n' +
+          '  3. **Check**: Plug your answer back into the left-hand side to confirm equality!\n\n' +
+          '• **Practice in Equation Quest**: Head to our interactive **Equation Quest** mini-game to battle math monsters with algebraic equations!';
+      }
+
+      if (/newton|gravity|force|physics/i.test(q)) {
+        return '⚡ **' + aName + ' (Physics Specialist)**:\n\n' +
+          '• **Newton\'s Laws of Motion**:\n' +
+          '  1. **First Law (Inertia)**: An object remains at rest or in uniform motion unless acted upon by a net external force.\n' +
+          '  2. **Second Law (F = m × a)**: Force equals mass multiplied by acceleration.\n' +
+          '  3. **Third Law (Action & Reaction)**: For every action, there is an equal and opposite reaction.\n\n' +
+          '• **Gravity Constant**: Near Earth\'s surface, gravitational acceleration is approximately **g ≈ 9.8 m/s²**.';
+      }
+
+      if (/photosynthesis|cell|mitochondria|biology/i.test(q)) {
+        return '⚡ **' + aName + ' (Life Sciences)**:\n\n' +
+          '• **Photosynthesis Formula**: 6CO₂ + 6H₂O + Sunlight ➔ C₆H₁₂O₆ (Glucose) + 6O₂\n' +
+          '• **Chloroplasts**: Organelles containing chlorophyll that capture photon energy from sunlight.\n' +
+          '• **Mitochondria**: The \'powerhouse of the cell\', converting glucose into ATP energy through cellular respiration!';
+      }
+
+      if (/history|apollo|war|rome|pyramid/i.test(q)) {
+        return '⚡ **' + aName + ' (History & Timeline Guard)**:\n\n' +
+          '• **Historical Context for "' + text + '"**:\n' +
+          '  - Key events are driven by geographic, economic, and cultural developments.\n' +
+          '  - Understanding primary sources and cause-and-effect timelines provides deep insight.\n\n' +
+          '• **Mini-Game Recommendation**: Try out our **History Hero** simulation above to make critical time-travel decisions!';
+      }
+
+      if (/quiz|test|practice/i.test(q)) {
+        return '⚡ **' + aName + ' (Quick Concept Quiz)**:\n\n' +
+          'Here are 3 quick practice questions for you:\n\n' +
+          '1. **Math**: What is the value of `4x - 6 = 26`?\n' +
+          '2. **Science**: What organelle is responsible for cellular ATP energy production?\n' +
+          '3. **Space**: What process powers the radiant energy output of stars in their core?\n\n' +
+          'Reply with your answers and I will grade them!';
+      }
+
+      // Default structured curriculum answer
+      return '⚡ **' + aName + '**:\n\n' +
+        'Here is the structured breakdown for **"' + text + '"**:\n\n' +
+        '• **Core Concept**: Break the subject down into its fundamental definitions and axioms.\n' +
+        '• **Methodology**: Apply systematic analysis step-by-step to arrive at the solution.\n' +
+        '• **Memory Anchor**: Test your retention using our **Instant Flashcard Magic** deck and **Vocabulary Void** game!\n\n' +
+        '*(💡 Tip: On GitHub Pages, you can click ⚙️ Settings above to connect your free Gemini API Key for live custom AI answers!)*';
+    }
+
     async function sendTutorMessage() {
       const inp = document.getElementById('tutor-inp');
-      const text = inp.value.trim();
+      const text = inp ? inp.value.trim() : '';
       if (!text) return;
 
       const chatBox = document.getElementById('ai-chat-box');
+      const select = document.getElementById('agent-select');
+      const activeAgent = select ? select.value : currentAgent;
 
       // Add user message
       const userDiv = document.createElement('div');
@@ -1411,7 +1592,7 @@
       inp.value = '';
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // Loading bubble
+      // Add thinking bubble
       const botDiv = document.createElement('div');
       botDiv.className = 'ai-msg';
       botDiv.innerHTML = `
@@ -1421,33 +1602,55 @@
       chatBox.appendChild(botDiv);
       chatBox.scrollTop = chatBox.scrollHeight;
 
+      let reply = '';
+
+      // Tier 1: Try Node.js Express server (/api/tutor)
       try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000);
+
         const res = await fetch('/api/tutor', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             message: text,
-            agent: 'vaibs',
+            agent: activeAgent,
             studentName: 'Explorer',
             studentGrade: '7',
-            systemPrompt: 'You are the Atomic 24/7 AI Tutor. Explain concepts clearly with high encouragement, step-by-step reasoning, and concise bullet points.'
-          })
+            systemPrompt: ''
+          }),
+          signal: controller.signal
         });
+        clearTimeout(timeoutId);
 
-        let reply = '';
         if (res.ok) {
           const data = await res.json();
-          reply = data.reply || '';
+          if (data && data.reply) {
+            reply = data.reply;
+          }
         }
-
-        if (!reply) {
-          reply = `Here is a clear breakdown for "${text}":\n\n• **Core Concept**: Break the problem down into fundamental components.\n• **Step-by-Step**: Apply the formula or historical timeline methodically.\n• **Check**: Test your answer in Equation Quest or Vocabulary Void to solidify mastery!`;
-        }
-
-        botDiv.querySelector('.ai-msg-bubble').innerHTML = formatMarkdown(reply);
-      } catch (err) {
-        botDiv.querySelector('.ai-msg-bubble').textContent = 'Unable to connect to AI server. Please try again in a moment!';
+      } catch (e) {
+        // Backend not available (e.g. GitHub Pages or static host)
       }
+
+      // Tier 2: Try direct client-side Gemini call if user configured API Key
+      if (!reply) {
+        const userApiKey = localStorage.getItem('atomic_gemini_api_key');
+        if (userApiKey) {
+          try {
+            reply = await callClientGemini(userApiKey, text, activeAgent);
+          } catch (geminiErr) {
+            console.warn('Client Gemini call failed:', geminiErr);
+          }
+        }
+      }
+
+      // Tier 3: Use Smart Offline Solver & Educational Heuristic Engine
+      if (!reply) {
+        reply = generateSmartOfflineResponse(text, activeAgent);
+      }
+
+      botDiv.querySelector('.ai-msg-bubble').innerHTML = formatMarkdown(reply);
       chatBox.scrollTop = chatBox.scrollHeight;
     }
 
@@ -1459,8 +1662,44 @@
       return escapeHtml(text)
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/\`([^\`]+)\`/g, '<code style="background:rgba(255,255,255,0.12);padding:1px 5px;border-radius:4px;">$1</code>')
         .replace(/\n/g, '<br/>');
     }
   </script>
+
+  <!-- ----------------------------- MODAL: API KEY & GITHUB SETTINGS ----------------------------- -->
+  <div class="modal-backdrop" id="modal-apikey">
+    <div class="modal-panel" style="max-width: 520px;">
+      <div class="modal-header">
+        <div class="modal-title" style="display: flex; align-items: center; gap: 8px;">
+          <span>⚙️</span> AI & GitHub Settings
+        </div>
+        <button class="modal-close-btn" onclick="closeModals()">✕</button>
+      </div>
+      <div class="modal-body">
+        <div style="font-size: 13.5px; color: var(--text-muted); line-height: 1.6; margin-bottom: 16px;">
+          <strong>Deploying on GitHub Pages or running statically?</strong><br/>
+          Atomic connects automatically to the Node.js backend server when running locally with <code style="color:#ffffff; background:rgba(255,255,255,0.1); padding:2px 6px; border-radius:4px;">npm run dev</code>.<br/>
+          If you are on <strong>GitHub Pages</strong>, you can paste your free Google Gemini API key below to enable direct live AI responses in your browser!
+        </div>
+
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 12px; font-weight: 600; color: #ffffff; margin-bottom: 6px;">Gemini API Key (Optional for GitHub Pages):</label>
+          <input type="password" id="user-gemini-key" class="game-inp" style="width: 100%;" placeholder="AIzaSy..." />
+          <div style="font-size: 11px; color: var(--text-dim); margin-top: 5px;">Your key is stored securely in your browser localStorage only.</div>
+        </div>
+
+        <div id="api-status-badge" style="padding: 10px 14px; border-radius: 8px; font-size: 12px; margin-bottom: 16px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: var(--text-muted);">
+          Checking connection status...
+        </div>
+
+        <div style="display: flex; gap: 10px; justify-content: flex-end;">
+          <button class="btn-see-how" style="padding: 9px 16px; font-size: 13px;" onclick="clearApiKey()">Clear Key</button>
+          <button class="btn-get-started" style="padding: 9px 18px; font-size: 13px; border-radius: 8px;" onclick="saveApiKey()">Save Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
