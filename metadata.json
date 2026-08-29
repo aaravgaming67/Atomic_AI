@@ -1,6 +1,6 @@
 {
-  "name": "Learnova - Learn Together",
-  "description": "The unified school learning platform featuring homework, marks, fee tracking, notes, quizzes, teacher queries, study groups, real-time calls, and Nova AI.",
+  "name": "Atomic - Master Every Subject at Atomic Speed",
+  "description": "Personalized AI tutoring meets addictive mini-games. Battle math monsters, conquer vocabulary voids, and learn 24/7 with adaptive AI tutors.",
   "requestFramePermissions": [
     "camera",
     "microphone"
