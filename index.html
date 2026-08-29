@@ -16,28 +16,30 @@
 <style>
 /* FONT IMPORTS & DEFINITIONS */
 :root{
-    --bg:#000000;
-    --deep-blue:#08080a;
-    --deep-space:#09090b;
-    --panel:rgba(18, 18, 20, 0.85);
-    --panel-card:rgba(22, 22, 26, 0.85);
-    --panel-hover:rgba(32, 32, 38, 0.95);
-    --sidebar-bg:rgba(10, 10, 12, 0.96);
+    --bg:#07040d;
+    --deep-blue:#0e071e;
+    --deep-space:#140b2b;
+    --panel:rgba(23, 14, 46, 0.85);
+    --panel-card:rgba(30, 18, 59, 0.78);
+    --panel-hover:rgba(49, 27, 99, 0.9);
+    --sidebar-bg:rgba(14, 8, 28, 0.97);
     
-    /* Sleek Monochromatic & Celestial Palette */
-    --neon-blue:#ffffff;
-    --neon-blue-bright:#e5e7eb;
-    --neon-blue-glow:rgba(255, 255, 255, 0.15);
-    --neon-blue-dim:rgba(255, 255, 255, 0.08);
+    /* Vibrant Cosmic Purple & AI Glow Palette */
+    --neon-blue:#a855f7;
+    --neon-blue-bright:#c084fc;
+    --neon-purple:#8b5cf6;
+    --neon-indigo:#6366f1;
+    --neon-blue-glow:rgba(168, 85, 247, 0.35);
+    --neon-blue-dim:rgba(168, 85, 247, 0.15);
     --text-white:#ffffff;
-    --text-grey:#9ca3af;
-    --text-grey-light:#e5e7eb;
-    --border-neon:rgba(255, 255, 255, 0.14);
-    --border-subtle:rgba(255, 255, 255, 0.08);
-    --shadow-neon:0 8px 32px rgba(0, 0, 0, 0.8);
+    --text-grey:#a1a1aa;
+    --text-grey-light:#f4f4f5;
+    --border-neon:rgba(168, 85, 247, 0.38);
+    --border-subtle:rgba(168, 85, 247, 0.16);
+    --shadow-neon:0 8px 32px rgba(168, 85, 247, 0.28);
 
-    /* Clean Modern Geometric Sans: Plus Jakarta Sans */
-    --font-heading:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    /* Sleek Modern Fonts */
+    --font-heading:'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     --font-body:'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     
     --sidebar-w:270px;
@@ -81,13 +83,14 @@ h1, h2, h3, h4, .heading-font{
     position:fixed;
     inset:0;
     background:
-        radial-gradient(ellipse at 50% 50%, rgba(15, 15, 15, 0.7), transparent 75%),
-        #000000;
+        radial-gradient(ellipse at 50% 0%, rgba(147, 51, 234, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        #07040d;
     z-index:-3;
     pointer-events:none;
 }
 .noise{
-    position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.025;
+    position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.03;
     background-image:repeating-linear-gradient(0deg,#fff 0,#fff 1px,transparent 1px,transparent 4px);
 }
 
@@ -96,7 +99,7 @@ h1, h2, h3, h4, .heading-font{
     position:fixed;
     inset:0;
     z-index:99999;
-    background:rgba(0, 0, 0, 0.88);
+    background:rgba(5, 2, 10, 0.92);
     backdrop-filter:blur(28px);
     display:flex;
     align-items:center;
@@ -113,11 +116,11 @@ h1, h2, h3, h4, .heading-font{
 
 .gate-container{
     width:min(540px, 100%);
-    background:linear-gradient(180deg, #18181b 0%, #0d0d10 100%);
-    border:1px solid rgba(255, 255, 255, 0.16);
+    background:linear-gradient(180deg, #190e32 0%, #0c071b 100%);
+    border:1px solid rgba(168, 85, 247, 0.35);
     border-radius:24px;
     padding:38px 34px;
-    box-shadow:0 25px 80px rgba(0, 0, 0, 0.95);
+    box-shadow:0 25px 80px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.18);
     position:relative;
     text-align:left;
 }
@@ -132,12 +135,12 @@ h1, h2, h3, h4, .heading-font{
     width:48px;
     height:48px;
     border-radius:50%;
-    border:1px solid rgba(255, 255, 255, 0.2);
+    border:1px solid rgba(168, 85, 247, 0.45);
     display:grid;
     place-items:center;
     font-size:22px;
-    box-shadow:0 0 20px rgba(255, 255, 255, 0.08);
-    background:rgba(255, 255, 255, 0.06);
+    box-shadow:0 0 25px rgba(168, 85, 247, 0.35);
+    background:linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(124, 58, 237, 0.4));
 }
 
 .gate-title{
@@ -146,6 +149,7 @@ h1, h2, h3, h4, .heading-font{
     color:var(--text-white);
     line-height:1;
     letter-spacing:-0.025em;
+    text-shadow:0 0 20px rgba(168, 85, 247, 0.4);
 }
 .gate-subtitle{
     font-size:14px;
@@ -169,7 +173,7 @@ h1, h2, h3, h4, .heading-font{
 
 .gate-label{
     font-size:13.5px;
-    color:#e5e7eb;
+    color:#e9d5ff;
     font-weight:600;
     display:flex;
     align-items:center;
@@ -191,7 +195,7 @@ h1, h2, h3, h4, .heading-font{
     position:absolute;
     left:14px;
     font-size:16px;
-    color:#9ca3af;
+    color:#c084fc;
     pointer-events:none;
 }
 
@@ -200,7 +204,7 @@ h1, h2, h3, h4, .heading-font{
     padding:13px 14px 13px 44px;
     border-radius:12px;
     background:rgba(255, 255, 255, 0.05);
-    border:1px solid rgba(255, 255, 255, 0.14);
+    border:1px solid rgba(168, 85, 247, 0.25);
     color:var(--text-white);
     font-family:var(--font-body);
     font-size:15px;
@@ -208,12 +212,12 @@ h1, h2, h3, h4, .heading-font{
     transition:all 0.2s ease;
 }
 .gate-input:focus{
-    border-color:#ffffff;
-    box-shadow:0 0 0 2px rgba(255, 255, 255, 0.2);
+    border-color:#c084fc;
+    box-shadow:0 0 0 3px rgba(168, 85, 247, 0.3);
     background:rgba(255, 255, 255, 0.08);
 }
 .gate-input::placeholder{
-    color:#6b7280;
+    color:#71717a;
 }
 
 select.gate-input option{
@@ -224,7 +228,7 @@ select.gate-input option{
 .gate-tabs{
     display:flex;
     background:rgba(255, 255, 255, 0.04);
-    border:1px solid rgba(255, 255, 255, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.2);
     border-radius:12px;
     padding:4px;
     margin-bottom:16px;
@@ -247,8 +251,9 @@ select.gate-input option{
     transition:all 0.2s ease;
 }
 .gate-tab.active{
-    background:#ffffff;
-    color:#000000;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    color:#ffffff;
+    box-shadow:0 4px 15px rgba(168, 85, 247, 0.4);
     font-weight:700;
 }
 
@@ -259,7 +264,7 @@ select.gate-input option{
     color:var(--text-grey);
 }
 .gate-toggle-link a{
-    color:#ffffff;
+    color:#c084fc;
     text-decoration:underline;
     font-weight:600;
     cursor:pointer;
@@ -270,8 +275,8 @@ select.gate-input option{
     margin-top:10px;
     padding:14px 20px;
     border-radius:9999px;
-    background:#ffffff;
-    color:#000000;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    color:#ffffff;
     border:0;
     font-family:var(--font-heading);
     font-size:16px;
@@ -282,13 +287,13 @@ select.gate-input option{
     align-items:center;
     justify-content:center;
     gap:10px;
-    box-shadow:0 4px 25px rgba(255, 255, 255, 0.2);
+    box-shadow:0 4px 25px rgba(168, 85, 247, 0.45);
     transition:all 0.2s ease;
 }
 .gate-btn:hover{
-    background:#e5e7eb;
+    background:linear-gradient(135deg, #b975f9 0%, #8b5cf6 100%);
     transform:translateY(-2px);
-    box-shadow:0 6px 30px rgba(255, 255, 255, 0.35);
+    box-shadow:0 6px 32px rgba(168, 85, 247, 0.6);
 }
 
 /* LEFT SIDEBAR NAVIGATION */
@@ -298,9 +303,9 @@ select.gate-input option{
     left:0;
     bottom:0;
     width:var(--sidebar-w);
-    background:rgba(12, 12, 14, 0.96);
+    background:rgba(14, 8, 28, 0.97);
     backdrop-filter:blur(24px);
-    border-right:1px solid rgba(255, 255, 255, 0.1);
+    border-right:1px solid rgba(168, 85, 247, 0.16);
     z-index:90;
     display:flex;
     flex-direction:column;
@@ -328,17 +333,17 @@ select.gate-input option{
 .atom-icon{
     width:40px;
     height:40px;
-    border:1px solid rgba(255, 255, 255, 0.2);
+    border:1px solid rgba(168, 85, 247, 0.4);
     border-radius:50%;
     position:relative;
-    box-shadow:0 0 15px rgba(255, 255, 255, 0.08);
+    box-shadow:0 0 18px rgba(168, 85, 247, 0.3);
     display:grid;
     place-items:center;
     font-size:16px;
-    background:rgba(255, 255, 255, 0.06);
+    background:linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(99, 102, 241, 0.2));
 }
 .atom-icon:before,.atom-icon:after{
-    content:"";position:absolute;inset:4px -4px;border:1px solid rgba(255, 255, 255, 0.3);
+    content:"";position:absolute;inset:4px -4px;border:1px solid rgba(192, 132, 252, 0.45);
     border-radius:50%;transform:rotate(60deg);
 }
 .atom-icon:after{transform:rotate(-60deg);}
@@ -352,7 +357,7 @@ select.gate-input option{
 }
 .brand-text span{
     font-size:10px;
-    color:#9ca3af;
+    color:#c084fc;
     letter-spacing:1px;
     font-weight:600;
 }
@@ -370,7 +375,7 @@ select.gate-input option{
     font-size:11px;
     font-weight:bold;
     letter-spacing:1.5px;
-    color:var(--text-grey);
+    color:#a1a1aa;
     padding:10px 10px 4px;
     text-transform:uppercase;
     display:flex;
@@ -389,7 +394,7 @@ select.gate-input option{
     padding:10px 8px;
     border-radius:12px;
     background:rgba(255, 255, 255, 0.04);
-    border:1px solid rgba(255, 255, 255, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.16);
     color:var(--text-white);
     font-size:11.5px;
     cursor:pointer;
@@ -401,8 +406,8 @@ select.gate-input option{
     text-align:center;
 }
 .agent-mini-btn:hover{
-    background:rgba(255, 255, 255, 0.1);
-    border-color:rgba(255, 255, 255, 0.3);
+    background:rgba(168, 85, 247, 0.15);
+    border-color:rgba(168, 85, 247, 0.45);
     transform:translateY(-2px);
 }
 .agent-mini-btn .agent-icon{
@@ -417,7 +422,7 @@ select.gate-input option{
 }
 .agent-mini-btn span{
     font-size:9.5px;
-    color:var(--text-grey);
+    color:#c084fc;
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
@@ -441,32 +446,33 @@ select.gate-input option{
     width:100%;
 }
 .sidebar-link:hover{
-    background:rgba(255, 255, 255, 0.08);
-    border-color:rgba(255, 255, 255, 0.2);
+    background:rgba(168, 85, 247, 0.12);
+    border-color:rgba(168, 85, 247, 0.3);
     color:var(--text-white);
     transform:translateX(3px);
 }
 .sidebar-link.active{
-    background:#ffffff;
-    border-color:#ffffff;
-    color:#000000;
+    background:linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(124, 58, 237, 0.4));
+    border-color:#a855f7;
+    color:#ffffff;
     font-weight:700;
+    box-shadow:0 4px 15px rgba(168, 85, 247, 0.25);
 }
 .sidebar-link.active .icon{
-    color:#000000;
+    color:#c084fc;
 }
 .sidebar-link .icon{
     font-size:17px;
     width:24px;
     display:grid;
     place-items:center;
-    color:#9ca3af;
+    color:#c084fc;
 }
 
 .sidebar-user{
     padding:16px;
     border-top:1px solid var(--border-subtle);
-    background:rgba(12, 12, 14, 0.9);
+    background:rgba(14, 8, 28, 0.95);
 }
 .user-card{
     display:flex;
@@ -475,26 +481,27 @@ select.gate-input option{
     padding:10px 12px;
     border-radius:12px;
     background:rgba(255, 255, 255, 0.03);
-    border:1px solid rgba(255, 255, 255, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.18);
     cursor:pointer;
     transition:0.2s;
 }
 .user-card:hover{
-    border-color:rgba(255, 255, 255, 0.3);
-    background:rgba(255, 255, 255, 0.08);
+    border-color:rgba(168, 85, 247, 0.4);
+    background:rgba(168, 85, 247, 0.1);
 }
 .user-avatar{
     width:36px;
     height:36px;
     border-radius:50%;
-    background:rgba(255, 255, 255, 0.08);
-    border:1px solid rgba(255, 255, 255, 0.2);
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    border:1px solid rgba(255, 255, 255, 0.3);
     color:#ffffff;
     font-family:var(--font-heading);
     font-weight:700;
     font-size:16px;
     display:grid;
     place-items:center;
+    box-shadow:0 0 12px rgba(168, 85, 247, 0.4);
 }
 .user-info{
     flex:1;
@@ -510,7 +517,7 @@ select.gate-input option{
 }
 .user-grade{
     font-size:11px;
-    color:#9ca3af;
+    color:#c084fc;
 }
 
 /* MAIN APP WRAPPER */
@@ -529,8 +536,8 @@ header{
     top:0;
     z-index:80;
     backdrop-filter:blur(24px);
-    background:rgba(0, 0, 0, 0.85);
-    border-bottom:1px solid rgba(255, 255, 255, 0.1);
+    background:rgba(10, 5, 20, 0.88);
+    border-bottom:1px solid rgba(168, 85, 247, 0.18);
 }
 .top-nav{
     max-width:1300px;
@@ -558,7 +565,7 @@ header{
     gap:28px;
 }
 .nav-link-item{
-    color:#d1d5db;
+    color:#d4d4d8;
     text-decoration:none;
     font-size:15px;
     font-weight:500;
@@ -567,12 +574,12 @@ header{
     cursor:pointer;
 }
 .nav-link-item:hover{
-    color:#ffffff;
+    color:#c084fc;
 }
 .mobile-toggle{
     display:none;
     background:transparent;
-    border:1px solid rgba(255, 255, 255, 0.2);
+    border:1px solid rgba(168, 85, 247, 0.3);
     color:var(--text-white);
     padding:8px 12px;
     border-radius:10px;
@@ -591,13 +598,13 @@ header{
     padding:5px 12px;
     border-radius:20px;
     background:rgba(255, 255, 255, 0.04);
-    border:1px solid rgba(255, 255, 255, 0.12);
+    border:1px solid rgba(168, 85, 247, 0.2);
     font-size:13px;
     color:var(--text-white);
 }
 .header-stat-pill.primary-pill{
-    border-color:rgba(255, 255, 255, 0.3);
-    background:rgba(255, 255, 255, 0.08);
+    border-color:rgba(168, 85, 247, 0.45);
+    background:rgba(168, 85, 247, 0.12);
 }
 .header-actions{
     display:flex;
@@ -607,8 +614,8 @@ header{
 
 /* BUTTONS */
 .btn{
-    border:1px solid rgba(255, 255, 255, 0.2);
-    background:rgba(255, 255, 255, 0.06);
+    border:1px solid rgba(168, 85, 247, 0.3);
+    background:rgba(168, 85, 247, 0.1);
     color:var(--text-white);
     padding:10px 20px;
     border-radius:24px;
@@ -623,30 +630,31 @@ header{
 }
 .btn:hover{
     transform:translateY(-2px);
-    border-color:rgba(255, 255, 255, 0.5);
-    background:rgba(255, 255, 255, 0.14);
+    border-color:#a855f7;
+    background:rgba(168, 85, 247, 0.22);
     color:var(--text-white);
+    box-shadow:0 4px 20px rgba(168, 85, 247, 0.3);
 }
 .btn-white-pill{
-    background:#ffffff !important;
-    color:#000000 !important;
-    border:1px solid #ffffff !important;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%) !important;
+    color:#ffffff !important;
+    border:1px solid #c084fc !important;
     font-weight:bold;
-    box-shadow:0 0 20px rgba(255, 255, 255, 0.2);
+    box-shadow:0 0 20px rgba(168, 85, 247, 0.35);
 }
 .btn-white-pill:hover{
-    background:#e5e7eb !important;
-    box-shadow:0 0 30px rgba(255, 255, 255, 0.4);
+    background:linear-gradient(135deg, #b975f9 0%, #8b5cf6 100%) !important;
+    box-shadow:0 0 30px rgba(168, 85, 247, 0.55);
 }
 .btn-glass-pill{
     background:rgba(255, 255, 255, 0.08) !important;
     color:#ffffff !important;
-    border:1px solid rgba(255, 255, 255, 0.2) !important;
+    border:1px solid rgba(168, 85, 247, 0.25) !important;
     backdrop-filter:blur(10px);
 }
 .btn-glass-pill:hover{
-    background:rgba(255, 255, 255, 0.16) !important;
-    border-color:rgba(255, 255, 255, 0.4) !important;
+    background:rgba(168, 85, 247, 0.2) !important;
+    border-color:rgba(168, 85, 247, 0.5) !important;
 }
 
 /* HERO SECTION WITH CINEMATIC CELESTIAL BACKGROUND & MOUNTAIN SILHOUETTE */
@@ -679,16 +687,16 @@ header{
     width:min(440px, 85vw);
     height:min(440px, 85vw);
     border-radius:50%;
-    background:radial-gradient(circle at 50% 50%, #030303 0%, #080808 65%, #181818 95%, #333333 100%);
-    box-shadow:0 0 120px rgba(255, 255, 255, 0.08), inset 0 0 80px rgba(0, 0, 0, 0.95);
-    border:1px solid rgba(255, 255, 255, 0.08);
+    background:radial-gradient(circle at 50% 50%, #0e0720 0%, #150a30 65%, #24114d 95%, #4c1d95 100%);
+    box-shadow:0 0 120px rgba(168, 85, 247, 0.25), inset 0 0 80px rgba(10, 5, 25, 0.95);
+    border:1px solid rgba(168, 85, 247, 0.2);
 }
 .celestial-sphere::after{
     content:"";
     position:absolute;
     inset:-2px;
     border-radius:50%;
-    background:radial-gradient(circle, transparent 60%, rgba(255, 255, 255, 0.15) 98%, transparent 100%);
+    background:radial-gradient(circle, transparent 60%, rgba(192, 132, 252, 0.25) 98%, transparent 100%);
     opacity:0.8;
 }
 
@@ -729,10 +737,10 @@ header{
     gap:8px;
     padding:6px 16px;
     border-radius:24px;
-    background:rgba(255, 255, 255, 0.06);
-    border:1px solid rgba(255, 255, 255, 0.18);
+    background:rgba(168, 85, 247, 0.12);
+    border:1px solid rgba(168, 85, 247, 0.35);
     font-size:14px;
-    color:#e5e7eb;
+    color:#e9d5ff;
     margin-bottom:24px;
     backdrop-filter:blur(10px);
 }
@@ -791,8 +799,8 @@ header{
     text-align:left;
 }
 .game-card-pro{
-    background:linear-gradient(180deg, rgba(25, 25, 25, 0.7) 0%, rgba(12, 12, 12, 0.9) 100%);
-    border:1px solid rgba(255, 255, 255, 0.12);
+    background:linear-gradient(180deg, rgba(30, 18, 59, 0.8) 0%, rgba(16, 9, 34, 0.95) 100%);
+    border:1px solid rgba(168, 85, 247, 0.22);
     border-radius:18px;
     padding:28px 24px;
     backdrop-filter:blur(16px);
@@ -804,21 +812,22 @@ header{
 }
 .game-card-pro:hover{
     transform:translateY(-5px);
-    border-color:rgba(255, 255, 255, 0.35);
-    background:linear-gradient(180deg, rgba(35, 35, 35, 0.8) 0%, rgba(18, 18, 18, 0.95) 100%);
-    box-shadow:0 10px 30px rgba(0, 0, 0, 0.7);
+    border-color:rgba(168, 85, 247, 0.55);
+    background:linear-gradient(180deg, rgba(46, 26, 90, 0.9) 0%, rgba(22, 12, 46, 0.98) 100%);
+    box-shadow:0 12px 35px rgba(168, 85, 247, 0.25);
 }
 .game-card-icon-box{
     width:46px;
     height:46px;
     border-radius:12px;
-    background:rgba(255, 255, 255, 0.06);
-    border:1px solid rgba(255, 255, 255, 0.15);
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.35);
     display:grid;
     place-items:center;
     font-size:20px;
     margin-bottom:18px;
-    color:#ffffff;
+    color:#e9d5ff;
+    box-shadow:0 0 15px rgba(168, 85, 247, 0.2);
 }
 .game-card-pro h3{
     font-size:24px;
@@ -827,13 +836,13 @@ header{
 }
 .game-card-pro p{
     font-size:14.5px;
-    color:#9ca3af;
+    color:#a1a1aa;
     line-height:1.55;
     margin-bottom:20px;
     flex:1;
 }
 .game-card-play-link{
-    color:#ffffff;
+    color:#c084fc;
     font-size:14px;
     display:inline-flex;
     align-items:center;
@@ -843,6 +852,7 @@ header{
 }
 .game-card-pro:hover .game-card-play-link{
     gap:10px;
+    color:#e9d5ff;
 }
 
 /* THE INTELLIGENCE ENGINE BENTO GRID */
@@ -861,7 +871,7 @@ header{
 }
 .intelligence-header p{
     font-size:16px;
-    color:#9ca3af;
+    color:#a1a1aa;
 }
 .intelligence-bento-grid{
     display:grid;
@@ -870,8 +880,8 @@ header{
     gap:20px;
 }
 .bento-card{
-    background:linear-gradient(180deg, rgba(22, 22, 22, 0.7) 0%, rgba(12, 12, 12, 0.85) 100%);
-    border:1px solid rgba(255, 255, 255, 0.12);
+    background:linear-gradient(180deg, rgba(28, 16, 56, 0.8) 0%, rgba(14, 8, 30, 0.9) 100%);
+    border:1px solid rgba(168, 85, 247, 0.2);
     border-radius:18px;
     padding:30px;
     backdrop-filter:blur(16px);
@@ -881,13 +891,14 @@ header{
     justify-content:space-between;
 }
 .bento-card:hover{
-    border-color:rgba(255, 255, 255, 0.3);
+    border-color:rgba(168, 85, 247, 0.45);
     transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(168, 85, 247, 0.2);
 }
 .bento-card-icon{
     font-size:26px;
     margin-bottom:18px;
-    color:#ffffff;
+    color:#c084fc;
 }
 .bento-card h3{
     font-size:24px;
@@ -896,7 +907,7 @@ header{
 }
 .bento-card p{
     font-size:14.5px;
-    color:#9ca3af;
+    color:#a1a1aa;
     line-height:1.6;
 }
 .progress-analytics-card{
@@ -918,7 +929,8 @@ header{
     position:absolute;
     font-size:24px;
     font-weight:bold;
-    color:#ffffff;
+    color:#c084fc;
+    text-shadow:0 0 15px rgba(168, 85, 247, 0.4);
 }
 
 /* STATS */
@@ -932,9 +944,9 @@ header{
 }
 .stat{
     padding:20px;
-    border:1px solid rgba(255, 255, 255, 0.12);
+    border:1px solid rgba(168, 85, 247, 0.2);
     border-radius:16px;
-    background:rgba(15, 15, 15, 0.8);
+    background:rgba(22, 12, 46, 0.85);
     backdrop-filter:blur(14px);
     transition:0.2s transform;
     display:flex;
@@ -943,18 +955,19 @@ header{
 }
 .stat:hover{
     transform:translateY(-3px);
-    border-color:rgba(255, 255, 255, 0.3);
+    border-color:rgba(168, 85, 247, 0.5);
+    box-shadow:0 8px 25px rgba(168, 85, 247, 0.2);
 }
 .stat-icon{
     width:46px;
     height:46px;
     border-radius:12px;
-    background:rgba(255, 255, 255, 0.06);
-    border:1px solid rgba(255, 255, 255, 0.15);
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.3);
     display:grid;
     place-items:center;
     font-size:22px;
-    color:#ffffff;
+    color:#c084fc;
 }
 .stat strong{
     display:block;
@@ -964,7 +977,7 @@ header{
     line-height:1;
 }
 .stat span{
-    color:var(--text-grey);
+    color:#a1a1aa;
     font-size:12px;
     letter-spacing:0.5px;
     font-weight:bold;
@@ -987,8 +1000,8 @@ header{
 .agent-card{
     padding:24px 20px;
     border-radius:18px;
-    background:rgba(18, 18, 18, 0.85);
-    border:1px solid rgba(255, 255, 255, 0.12);
+    background:rgba(26, 15, 52, 0.85);
+    border:1px solid rgba(168, 85, 247, 0.22);
     backdrop-filter:blur(12px);
     display:flex;
     flex-direction:column;
@@ -1000,8 +1013,9 @@ header{
 }
 .agent-card:hover{
     transform:translateY(-5px);
-    border-color:rgba(255, 255, 255, 0.35);
-    background:rgba(28, 28, 28, 0.95);
+    border-color:rgba(168, 85, 247, 0.5);
+    background:rgba(44, 25, 88, 0.95);
+    box-shadow:0 12px 35px rgba(168, 85, 247, 0.25);
 }
 .agent-card-head{
     display:flex;
@@ -1013,11 +1027,12 @@ header{
     width:46px;
     height:46px;
     border-radius:50%;
-    background:rgba(255, 255, 255, 0.08);
-    border:1px solid rgba(255, 255, 255, 0.2);
+    background:linear-gradient(135deg, rgba(168, 85, 247, 0.25), rgba(99, 102, 241, 0.3));
+    border:1px solid rgba(168, 85, 247, 0.35);
     display:grid;
     place-items:center;
     font-size:22px;
+    box-shadow:0 0 15px rgba(168, 85, 247, 0.2);
 }
 .agent-card h3{
     font-size:24px;
@@ -1026,7 +1041,7 @@ header{
 }
 .agent-card span.agent-role{
     font-size:11px;
-    color:#9ca3af;
+    color:#c084fc;
     font-weight:bold;
     text-transform:uppercase;
     letter-spacing:0.5px;
@@ -1048,9 +1063,9 @@ header{
     font-size:10px;
     padding:3px 8px;
     border-radius:20px;
-    background:rgba(255, 255, 255, 0.05);
-    border:1px solid rgba(255, 255, 255, 0.12);
-    color:var(--text-white);
+    background:rgba(168, 85, 247, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.25);
+    color:#e9d5ff;
 }
 
 /* SECTIONS */
@@ -1087,8 +1102,8 @@ header{
 .grade{
     min-height:95px;
     border-radius:16px;
-    border:1px solid rgba(255, 255, 255, 0.12);
-    background:rgba(20, 20, 24, 0.85);
+    border:1px solid rgba(168, 85, 247, 0.2);
+    background:rgba(26, 15, 52, 0.85);
     color:var(--text-white);
     cursor:pointer;
     transition:.2s all;
@@ -1097,16 +1112,16 @@ header{
 }
 .grade:hover{
     transform:translateY(-3px);
-    border-color:rgba(255, 255, 255, 0.35);
-    background:rgba(32, 32, 38, 0.95);
-    box-shadow:0 8px 30px rgba(0, 0, 0, 0.8);
+    border-color:rgba(168, 85, 247, 0.5);
+    background:rgba(44, 25, 88, 0.95);
+    box-shadow:0 8px 30px rgba(168, 85, 247, 0.2);
 }
 .grade.active{
     transform:translateY(-3px);
-    border-color:#ffffff;
-    background:#ffffff;
-    color:#000000;
-    box-shadow:0 8px 30px rgba(255, 255, 255, 0.2);
+    border-color:#a855f7;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    color:#ffffff;
+    box-shadow:0 8px 30px rgba(168, 85, 247, 0.4);
 }
 .grade strong{
     font-family:var(--font-heading);
@@ -1115,16 +1130,16 @@ header{
     color:#ffffff;
 }
 .grade.active strong{
-    color:#000000 !important;
+    color:#ffffff !important;
 }
 .grade p{
     margin-top:4px;
-    color:#9ca3af;
+    color:#c084fc;
     font-size:12px;
     font-weight:600;
 }
 .grade.active p{
-    color:#000000 !important;
+    color:#f4f4f5 !important;
 }
 
 /* SUBJECTS */
@@ -1137,18 +1152,18 @@ header{
     position:relative;
     overflow:hidden;
     padding:22px;
-    border:1px solid rgba(255, 255, 255, 0.12);
+    border:1px solid rgba(168, 85, 247, 0.2);
     border-radius:18px;
-    background:rgba(18, 18, 22, 0.85);
+    background:rgba(24, 14, 48, 0.85);
     cursor:pointer;
     transition:.25s all;
     backdrop-filter:blur(10px);
 }
 .subject:hover{
     transform:translateY(-5px);
-    border-color:rgba(255, 255, 255, 0.35);
-    box-shadow:0 12px 35px rgba(0, 0, 0, 0.85);
-    background:rgba(28, 28, 34, 0.95);
+    border-color:rgba(168, 85, 247, 0.5);
+    box-shadow:0 12px 35px rgba(168, 85, 247, 0.25);
+    background:rgba(42, 24, 84, 0.95);
 }
 .subject .subject-head{
     display:flex;
@@ -1161,8 +1176,8 @@ header{
     width:44px;
     height:44px;
     border-radius:12px;
-    background:rgba(255, 255, 255, 0.06);
-    border:1px solid rgba(255, 255, 255, 0.14);
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.3);
     display:grid;
     place-items:center;
 }
@@ -1183,12 +1198,12 @@ header{
     align-items:center;
     gap:6px;
     font-size:11px;
-    color:#ffffff;
+    color:#e9d5ff;
     font-weight:600;
     padding:4px 10px;
     border-radius:20px;
-    background:rgba(255, 255, 255, 0.08);
-    border:1px solid rgba(255, 255, 255, 0.16);
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.3);
 }
 .subject .bar{
     height:4px;
@@ -1201,8 +1216,8 @@ header{
     display:block;
     height:100%;
     width:var(--progress);
-    background:#ffffff;
-    box-shadow:0 0 8px rgba(255, 255, 255, 0.5);
+    background:linear-gradient(90deg, #a855f7, #c084fc);
+    box-shadow:0 0 8px rgba(168, 85, 247, 0.6);
 }
 
 /* MATERIALS */
@@ -1213,16 +1228,16 @@ header{
 }
 .card{
     padding:24px;
-    background:rgba(18, 18, 22, 0.85);
-    border:1px solid rgba(255, 255, 255, 0.12);
+    background:rgba(24, 14, 48, 0.85);
+    border:1px solid rgba(168, 85, 247, 0.2);
     border-radius:18px;
     backdrop-filter:blur(12px);
     transition:0.2s transform;
 }
 .card:hover{
     transform:translateY(-3px);
-    border-color:rgba(255, 255, 255, 0.35);
-    box-shadow:0 10px 30px rgba(0, 0, 0, 0.8);
+    border-color:rgba(168, 85, 247, 0.5);
+    box-shadow:0 10px 30px rgba(168, 85, 247, 0.2);
 }
 .card-tag{
     display:inline-flex;
@@ -1232,11 +1247,11 @@ header{
     border-radius:50px;
     font-size:10.5px;
     letter-spacing:1px;
-    color:#ffffff;
-    border:1px solid rgba(255, 255, 255, 0.16);
+    color:#e9d5ff;
+    border:1px solid rgba(168, 85, 247, 0.3);
     margin-bottom:12px;
     font-weight:700;
-    background:rgba(255, 255, 255, 0.08);
+    background:rgba(168, 85, 247, 0.15);
 }
 .card h3{
     margin-bottom:8px;
@@ -1254,15 +1269,15 @@ header{
     padding-top:10px;
     border-top:1px solid var(--border-subtle);
     font-size:12px;
-    color:#9ca3af;
+    color:#a1a1aa;
 }
 .source a{
-    color:#ffffff;
+    color:#c084fc;
     text-decoration:underline;
     font-weight:600;
 }
 .source a:hover{
-    color:#e5e7eb;
+    color:#e9d5ff;
 }
 
 /* GAMES */
@@ -1274,24 +1289,24 @@ header{
 .game{
     padding:24px;
     border-radius:20px;
-    border:1px solid rgba(255, 255, 255, 0.12);
-    background:rgba(18, 18, 22, 0.85);
+    border:1px solid rgba(168, 85, 247, 0.2);
+    background:rgba(24, 14, 48, 0.85);
     backdrop-filter:blur(12px);
     display:flex;
     flex-direction:column;
     justify-content:space-between;
 }
 .game:hover{
-    border-color:rgba(255, 255, 255, 0.35);
-    box-shadow:0 12px 35px rgba(0, 0, 0, 0.85);
+    border-color:rgba(168, 85, 247, 0.5);
+    box-shadow:0 12px 35px rgba(168, 85, 247, 0.25);
 }
 .game-icon{
     font-size:28px;
     width:48px;
     height:48px;
     border-radius:14px;
-    background:rgba(255, 255, 255, 0.06);
-    border:1px solid rgba(255, 255, 255, 0.14);
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.3);
     display:grid;
     place-items:center;
     margin-bottom:12px;
@@ -1304,18 +1319,18 @@ header{
 .quiz-box{
     padding:30px;
     border-radius:22px;
-    border:1px solid rgba(255, 255, 255, 0.16);
-    background:linear-gradient(180deg, rgba(22, 22, 26, 0.95) 0%, rgba(12, 12, 14, 0.98) 100%);
-    box-shadow:0 20px 60px rgba(0, 0, 0, 0.9);
+    border:1px solid rgba(168, 85, 247, 0.28);
+    background:linear-gradient(180deg, rgba(28, 16, 58, 0.95) 0%, rgba(15, 8, 32, 0.98) 100%);
+    box-shadow:0 20px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(168, 85, 247, 0.18);
 }
-.quiz-meta{display:flex;justify-content:space-between;color:var(--text-grey);font-size:12.5px;font-weight:bold;margin-bottom:16px;}
+.quiz-meta{display:flex;justify-content:space-between;color:#c084fc;font-size:12.5px;font-weight:bold;margin-bottom:16px;}
 .quiz-question{font-size:22px;font-weight:700;margin-bottom:20px;line-height:1.35;color:var(--text-white);}
 .answers{display:grid;gap:10px;}
 .answer{
     padding:14px 18px;
     border-radius:12px;
-    border:1px solid rgba(255, 255, 255, 0.12);
-    background:rgba(255, 255, 255, 0.03);
+    border:1px solid rgba(168, 85, 247, 0.2);
+    background:rgba(168, 85, 247, 0.05);
     color:var(--text-white);
     text-align:left;
     cursor:pointer;
@@ -1325,19 +1340,19 @@ header{
     align-items:center;
     gap:10px;
 }
-.answer:hover{border-color:rgba(255, 255, 255, 0.4);transform:translateX(4px);background:rgba(255, 255, 255, 0.08);}
+.answer:hover{border-color:rgba(168, 85, 247, 0.55);transform:translateX(4px);background:rgba(168, 85, 247, 0.15);}
 .answer.correct{background:rgba(34, 197, 94, 0.2);border-color:#22c55e;color:#ffffff;box-shadow:0 0 20px rgba(34, 197, 94, 0.3);}
 .answer.wrong{background:rgba(239, 68, 68, 0.2);border-color:#ef4444;color:#ffffff;}
-.quiz-result{margin-top:16px;color:#ffffff;min-height:24px;font-weight:600;font-size:15px;}
+.quiz-result{margin-top:16px;color:#c084fc;min-height:24px;font-weight:600;font-size:15px;}
 
 /* CREATORS */
 .creators-box{
     max-width:1300px;
     margin:20px auto 40px;
     padding:32px 24px;
-    border:1px solid rgba(255, 255, 255, 0.12);
+    border:1px solid rgba(168, 85, 247, 0.2);
     border-radius:22px;
-    background:rgba(14, 14, 16, 0.85);
+    background:rgba(20, 10, 40, 0.85);
     backdrop-filter:blur(10px);
     text-align:center;
 }
@@ -1351,37 +1366,37 @@ header{
     padding:22px;
     border-radius:16px;
     background:rgba(255, 255, 255, 0.03);
-    border:1px solid rgba(255, 255, 255, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.16);
     transition:0.2s transform;
 }
 .creator-card:hover{
     transform:translateY(-3px);
-    border-color:rgba(255, 255, 255, 0.35);
-    box-shadow:0 8px 30px rgba(0, 0, 0, 0.8);
+    border-color:rgba(168, 85, 247, 0.5);
+    box-shadow:0 8px 30px rgba(168, 85, 247, 0.2);
 }
 .creator-avatar{
     width:44px;
     height:44px;
     border-radius:50%;
-    border:1px solid rgba(255, 255, 255, 0.2);
-    background:rgba(255, 255, 255, 0.06);
+    border:1px solid rgba(168, 85, 247, 0.35);
+    background:linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(99, 102, 241, 0.2));
     display:grid;
     place-items:center;
     font-size:20px;
     margin:0 auto 10px;
 }
 .creator-card strong{display:block;font-size:18px;color:var(--text-white);font-family:var(--font-heading);font-weight:700;}
-.creator-card span{font-size:11px;color:#9ca3af;letter-spacing:1px;font-weight:bold;display:block;margin-top:2px;text-transform:uppercase;}
+.creator-card span{font-size:11px;color:#c084fc;letter-spacing:1px;font-weight:bold;display:block;margin-top:2px;text-transform:uppercase;}
 .creator-card p{font-size:13px;color:var(--text-grey);margin-top:8px;line-height:1.45;}
 
 footer{
     margin-top:60px;
-    border-top:1px solid rgba(255, 255, 255, 0.1);
-    background:rgba(0, 0, 0, 0.7);
+    border-top:1px solid rgba(168, 85, 247, 0.18);
+    background:rgba(8, 4, 18, 0.85);
     backdrop-filter:blur(16px);
     padding:48px 28px 40px;
     text-align:center;
-    color:#9ca3af;
+    color:#a1a1aa;
     font-size:14px;
 }
 .footer-inner{
@@ -1409,18 +1424,18 @@ footer{
     flex-wrap:wrap;
 }
 .footer-nav a{
-    color:#9ca3af;
+    color:#a1a1aa;
     text-decoration:none;
     font-size:14px;
     transition:color 0.2s;
     cursor:pointer;
 }
 .footer-nav a:hover{
-    color:#ffffff;
+    color:#c084fc;
 }
 .footer-copy{
     font-size:13px;
-    color:#6b7280;
+    color:#71717a;
 }
 
 /* FLOATING AI LAUNCHER BUTTON */
@@ -1431,35 +1446,331 @@ footer{
     z-index:95;
     padding:12px 24px;
     border-radius:9999px;
-    background:#ffffff;
-    color:#000000;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    color:#ffffff;
     font-family:var(--font-heading);
     font-size:15px;
     font-weight:700;
     letter-spacing:0.5px;
-    border:1px solid #ffffff;
+    border:1px solid #c084fc;
     cursor:pointer;
-    box-shadow:0 4px 25px rgba(255, 255, 255, 0.25);
+    box-shadow:0 4px 25px rgba(168, 85, 247, 0.45);
     display:flex;
     align-items:center;
     gap:10px;
     transition:.25s transform;
 }
 .float-ai-btn:hover{
-    background:#e5e7eb;
+    background:linear-gradient(135deg, #b975f9 0%, #8b5cf6 100%);
     transform:scale(1.05) translateY(-2px);
-    box-shadow:0 6px 35px rgba(255, 255, 255, 0.4);
+    box-shadow:0 6px 35px rgba(168, 85, 247, 0.65);
 }
 
-/* SLIDE-OVER AI MULTI-AGENT SIDE PANEL */
+/* ========================================== */
+/* FULL PAGE CHATBOT VIEW & LAYOUT STYLES     */
+/* ========================================== */
+.chatbot-page-view{
+    width:100%;
+    min-height:calc(100vh - 68px);
+    display:none; /* Managed via navigateTo() */
+    padding:32px 24px 60px;
+    background:
+        radial-gradient(ellipse at 50% 0%, rgba(147, 51, 234, 0.22) 0%, transparent 65%),
+        radial-gradient(ellipse at 80% 80%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+        #07040d;
+}
+.home-page-view{
+    width:100%;
+    display:block; /* Managed via navigateTo() */
+}
+
+.chatbot-page-container{
+    max-width:1100px;
+    margin:0 auto;
+    display:flex;
+    flex-direction:column;
+    gap:26px;
+}
+
+.chatbot-hero-header{
+    text-align:center;
+    padding:16px 20px 20px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+.chatbot-welcome-badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 16px;
+    border-radius:24px;
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.35);
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:1px;
+    color:#e9d5ff;
+    margin-bottom:14px;
+    backdrop-filter:blur(8px);
+}
+.pulse-dot{
+    width:8px;
+    height:8px;
+    border-radius:50%;
+    background:#a855f7;
+    box-shadow:0 0 10px #c084fc;
+    animation:pulse 2s infinite;
+}
+@keyframes pulse{
+    0%{opacity:1;transform:scale(1);}
+    50%{opacity:0.4;transform:scale(0.85);}
+    100%{opacity:1;transform:scale(1);}
+}
+.chatbot-hello-title{
+    font-family:var(--font-heading);
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:-0.03em;
+    color:#ffffff;
+    margin-bottom:10px;
+    line-height:1.15;
+    text-shadow:0 0 25px rgba(168, 85, 247, 0.45);
+}
+.chatbot-hello-sub{
+    font-size:15.5px;
+    color:#d4d4d8;
+    max-width:640px;
+    line-height:1.55;
+    margin-bottom:24px;
+}
+
+/* 4 AGENT SPECIALIST SELECTOR CARDS */
+.agent-specialist-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:12px;
+    width:100%;
+    max-width:880px;
+}
+.agent-spec-card{
+    background:rgba(26, 15, 52, 0.85);
+    border:1px solid rgba(168, 85, 247, 0.22);
+    border-radius:16px;
+    padding:14px 16px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    cursor:pointer;
+    transition:all 0.2s ease;
+    text-align:left;
+}
+.agent-spec-card:hover{
+    background:rgba(44, 25, 88, 0.95);
+    border-color:rgba(168, 85, 247, 0.5);
+    transform:translateY(-2px);
+}
+.agent-spec-card.active{
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    border-color:#c084fc;
+    box-shadow:0 8px 30px rgba(168, 85, 247, 0.45);
+}
+.agent-spec-card .spec-card-icon{
+    font-size:22px;
+    width:42px;
+    height:42px;
+    border-radius:12px;
+    background:rgba(168, 85, 247, 0.2);
+    display:grid;
+    place-items:center;
+    flex-shrink:0;
+}
+.agent-spec-card.active .spec-card-icon{
+    background:rgba(255, 255, 255, 0.2);
+}
+.agent-spec-card .spec-card-info strong{
+    display:block;
+    font-family:var(--font-heading);
+    font-size:14px;
+    font-weight:800;
+    color:#ffffff;
+    letter-spacing:-0.01em;
+}
+.agent-spec-card.active .spec-card-info strong{
+    color:#ffffff;
+}
+.agent-spec-card .spec-card-info span{
+    font-size:11.5px;
+    color:#c084fc;
+    display:block;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.agent-spec-card.active .spec-card-info span{
+    color:#f3e8ff;
+    font-weight:600;
+}
+
+/* FULL CHAT INTERFACE CARD */
+.full-chat-card{
+    background:linear-gradient(180deg, rgba(28, 16, 58, 0.95) 0%, rgba(14, 7, 30, 0.98) 100%);
+    border:1px solid rgba(168, 85, 247, 0.28);
+    border-radius:24px;
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:0 24px 70px rgba(0, 0, 0, 0.95), 0 0 40px rgba(168, 85, 247, 0.15);
+    min-height:580px;
+}
+.full-chat-topbar{
+    padding:18px 24px;
+    border-bottom:1px solid rgba(168, 85, 247, 0.18);
+    background:rgba(255, 255, 255, 0.02);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+}
+.full-chat-agent-info{
+    display:flex;
+    align-items:center;
+    gap:14px;
+}
+.chat-agent-avatar{
+    width:44px;
+    height:44px;
+    border-radius:12px;
+    background:linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(99, 102, 241, 0.3));
+    border:1px solid rgba(168, 85, 247, 0.4);
+    display:grid;
+    place-items:center;
+    font-size:22px;
+    box-shadow:0 0 15px rgba(168, 85, 247, 0.25);
+}
+.full-chat-agent-info h3{
+    font-size:18px;
+    font-weight:800;
+    color:#ffffff;
+    letter-spacing:-0.01em;
+}
+.full-chat-agent-info span{
+    font-size:12.5px;
+    color:#c084fc;
+}
+.full-chat-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+.btn-chat-action{
+    padding:8px 16px;
+    border-radius:12px;
+    background:rgba(168, 85, 247, 0.12);
+    border:1px solid rgba(168, 85, 247, 0.25);
+    color:#e9d5ff;
+    font-size:13px;
+    font-weight:600;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    transition:all 0.2s ease;
+}
+.btn-chat-action:hover{
+    background:rgba(168, 85, 247, 0.25);
+    border-color:rgba(168, 85, 247, 0.5);
+    color:#ffffff;
+    transform:translateY(-1px);
+}
+.btn-chat-action.btn-home-accent{
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    color:#ffffff;
+    border-color:#c084fc;
+    font-weight:700;
+    box-shadow:0 4px 15px rgba(168, 85, 247, 0.35);
+}
+.btn-chat-action.btn-home-accent:hover{
+    background:linear-gradient(135deg, #b975f9 0%, #8b5cf6 100%);
+    color:#ffffff;
+    box-shadow:0 6px 20px rgba(168, 85, 247, 0.55);
+}
+
+.full-chat-chips{
+    padding:12px 22px;
+    background:rgba(255, 255, 255, 0.015);
+    border-bottom:1px solid rgba(168, 85, 247, 0.12);
+    display:flex;
+    gap:8px;
+    overflow-x:auto;
+}
+
+.full-chat-messages{
+    flex:1;
+    min-height:360px;
+    max-height:520px;
+    padding:24px;
+    overflow-y:auto;
+    display:flex;
+    flex-direction:column;
+    gap:16px;
+    background:#0a0515;
+}
+
+.full-chat-input-area{
+    padding:16px 22px;
+    border-top:1px solid rgba(168, 85, 247, 0.18);
+    background:rgba(22, 12, 46, 0.95);
+}
+.full-input-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    background:rgba(255, 255, 255, 0.05);
+    border:1px solid rgba(168, 85, 247, 0.25);
+    border-radius:16px;
+    padding:6px 8px 6px 18px;
+    transition:all 0.2s ease;
+}
+.full-input-box:focus-within{
+    border-color:#c084fc;
+    box-shadow:0 0 0 3px rgba(168, 85, 247, 0.3);
+    background:rgba(255, 255, 255, 0.08);
+}
+.full-input-box input{
+    flex:1;
+    background:transparent;
+    border:none;
+    color:#ffffff;
+    font-size:15px;
+    outline:none;
+    font-family:var(--font-body);
+}
+.full-input-box input::placeholder{
+    color:#71717a;
+}
+.full-send-btn{
+    padding:10px 22px !important;
+    border-radius:12px !important;
+    font-size:14px !important;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%) !important;
+    color:#ffffff !important;
+    border:1px solid #c084fc !important;
+}
+.full-send-btn:hover{
+    background:linear-gradient(135deg, #b975f9 0%, #8b5cf6 100%) !important;
+}
+
+/* SLIDE-OVER AI MULTI-AGENT SIDE PANEL (Auxiliary) */
 .side-panel{
     position:fixed;
     top:0;
     right:0;
     bottom:0;
     width:min(500px, 100vw);
-    background:linear-gradient(180deg, #141417 0%, #09090b 100%);
-    border-left:1px solid rgba(255, 255, 255, 0.12);
+    background:linear-gradient(180deg, #1c1038 0%, #0c0618 100%);
+    border-left:1px solid rgba(168, 85, 247, 0.22);
     box-shadow:-20px 0 60px rgba(0,0,0,.9);
     z-index:999;
     display:flex;
@@ -1472,7 +1783,7 @@ footer{
 .panel-head{
     padding:16px 20px;
     background:rgba(255, 255, 255, 0.03);
-    border-bottom:1px solid rgba(255, 255, 255, 0.1);
+    border-bottom:1px solid rgba(168, 85, 247, 0.16);
     display:flex;
     justify-content:space-between;
     align-items:center;
@@ -1486,21 +1797,21 @@ footer{
     gap:10px;
 }
 .panel-head h2 span{
-    color:#ffffff;
+    color:#c084fc;
 }
 .panel-user-badge{
     font-size:11px;
     padding:3px 10px;
     border-radius:12px;
-    background:rgba(255, 255, 255, 0.08);
-    color:#ffffff;
-    border:1px solid rgba(255, 255, 255, 0.2);
+    background:rgba(168, 85, 247, 0.15);
+    color:#e9d5ff;
+    border:1px solid rgba(168, 85, 247, 0.3);
     font-weight:600;
 }
 .close{
     border:0;
     background:transparent;
-    color:var(--text-grey);
+    color:#a1a1aa;
     font-size:28px;
     cursor:pointer;
     transition:0.2s;
@@ -1513,7 +1824,7 @@ footer{
     display:grid;
     grid-template-columns:repeat(4, 1fr);
     background:rgba(0, 0, 0, 0.5);
-    border-bottom:1px solid rgba(255, 255, 255, 0.08);
+    border-bottom:1px solid rgba(168, 85, 247, 0.14);
     padding:6px 8px;
     gap:4px;
 }
@@ -1535,13 +1846,13 @@ footer{
 }
 .agent-tab:hover{
     color:var(--text-white);
-    background:rgba(255, 255, 255, 0.06);
+    background:rgba(168, 85, 247, 0.12);
 }
 .agent-tab.active{
-    color:#000000;
-    background:#ffffff;
-    border-color:#ffffff;
-    box-shadow:0 2px 10px rgba(255, 255, 255, 0.2);
+    color:#ffffff;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    border-color:#c084fc;
+    box-shadow:0 2px 10px rgba(168, 85, 247, 0.4);
     font-weight:700;
 }
 .agent-tab .tab-icon{font-size:15px;}
@@ -1549,30 +1860,31 @@ footer{
 .panel-chips{
     padding:10px 14px;
     background:rgba(255, 255, 255, 0.02);
-    border-bottom:1px solid rgba(255, 255, 255, 0.06);
+    border-bottom:1px solid rgba(168, 85, 247, 0.12);
     display:flex;
     gap:8px;
     overflow-x:auto;
 }
 .pchip{
     white-space:nowrap;
-    padding:5px 12px;
+    padding:6px 14px;
     border-radius:20px;
     font-size:12px;
-    background:rgba(255, 255, 255, 0.04);
-    border:1px solid rgba(255, 255, 255, 0.12);
-    color:var(--text-grey-light);
+    background:rgba(168, 85, 247, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.25);
+    color:#e9d5ff;
     cursor:pointer;
     font-weight:600;
     transition:0.2s;
     display:flex;
     align-items:center;
-    gap:5px;
+    gap:6px;
 }
 .pchip:hover{
     color:#ffffff;
-    border-color:rgba(255, 255, 255, 0.35);
-    background:rgba(255, 255, 255, 0.12);
+    border-color:rgba(168, 85, 247, 0.55);
+    background:rgba(168, 85, 247, 0.25);
+    transform:translateY(-1px);
 }
 
 .chat{
@@ -1582,29 +1894,30 @@ footer{
     display:flex;
     flex-direction:column;
     gap:14px;
-    background:#0c0c0e;
+    background:#0c0618;
 }
 
 .message{
-    max-width:92%;
+    max-width:90%;
     padding:14px 18px;
     border-radius:16px;
     line-height:1.6;
     font-size:14px;
 }
 .message.ai{
-    background:rgba(255, 255, 255, 0.06);
-    border:1px solid rgba(255, 255, 255, 0.12);
+    background:rgba(30, 16, 60, 0.85);
+    border:1px solid rgba(168, 85, 247, 0.25);
     color:var(--text-white);
     border-bottom-left-radius:4px;
 }
 .message.user{
     margin-left:auto;
-    background:#ffffff;
-    border:none;
-    color:#000000;
+    background:linear-gradient(135deg, #a855f7 0%, #7c3aed 100%);
+    border:1px solid #c084fc;
+    color:#ffffff;
     font-weight:500;
     border-bottom-right-radius:4px;
+    box-shadow:0 4px 15px rgba(168, 85, 247, 0.35);
 }
 
 /* Beautiful Math & Formula Styling */
@@ -1612,9 +1925,9 @@ footer{
     display:inline-block;
     padding:2px 6px;
     border-radius:6px;
-    background:rgba(255, 255, 255, 0.08);
-    border:1px solid rgba(255, 255, 255, 0.2);
-    color:#ffffff;
+    background:rgba(168, 85, 247, 0.15);
+    border:1px solid rgba(168, 85, 247, 0.35);
+    color:#f3e8ff;
     font-weight:bold;
     font-family:monospace;
     margin:2px 0;
@@ -1623,8 +1936,8 @@ footer{
     display:block;
     padding:10px 14px;
     border-radius:10px;
-    background:rgba(255, 255, 255, 0.04);
-    border:1px solid rgba(255, 255, 255, 0.14);
+    background:rgba(168, 85, 247, 0.1);
+    border:1px solid rgba(168, 85, 247, 0.25);
     color:#ffffff;
     font-weight:600;
     font-size:14.5px;
@@ -1634,13 +1947,13 @@ footer{
 .ai-bullet{
     margin:6px 0;
     padding-left:14px;
-    border-left:2px solid #ffffff;
+    border-left:2px solid #c084fc;
 }
 
 .chat-input{
     padding:14px;
-    border-top:1px solid rgba(255, 255, 255, 0.1);
-    background:#111114;
+    border-top:1px solid rgba(168, 85, 247, 0.18);
+    background:#160b2e;
     display:flex;
     gap:8px;
 }
@@ -1648,7 +1961,7 @@ footer{
     flex:1;
     background:rgba(255, 255, 255, 0.05);
     color:var(--text-white);
-    border:1px solid rgba(255, 255, 255, 0.14);
+    border:1px solid rgba(168, 85, 247, 0.25);
     padding:12px 16px;
     border-radius:12px;
     outline:none;
@@ -1656,8 +1969,8 @@ footer{
     font-family:var(--font-body);
 }
 .chat-input input:focus{
-    border-color:#ffffff;
-    box-shadow:0 0 0 2px rgba(255, 255, 255, 0.2);
+    border-color:#c084fc;
+    box-shadow:0 0 0 3px rgba(168, 85, 247, 0.3);
 }
 
 /* SEARCH MODAL */
@@ -1665,15 +1978,15 @@ footer{
     width:100%;
     padding:12px 16px;
     border-radius:12px;
-    background:rgba(20, 20, 24, 0.9);
-    border:1px solid rgba(255, 255, 255, 0.14);
+    background:rgba(28, 16, 56, 0.9);
+    border:1px solid rgba(168, 85, 247, 0.25);
     color:var(--text-white);
     outline:none;
     margin-bottom:20px;
     font-size:14.5px;
     font-family:var(--font-body);
 }
-.search:focus{border-color:#ffffff;box-shadow:0 0 0 2px rgba(255, 255, 255, 0.25);}
+.search:focus{border-color:#c084fc;box-shadow:0 0 0 3px rgba(168, 85, 247, 0.3);}
 
 /* RESPONSIVE LAYOUT */
 @media(max-width:1100px){
@@ -1705,11 +2018,15 @@ footer{
     .hero-buttons{justify-content:center;}
     .stats{grid-template-columns:repeat(2,1fr);}
     .agents-deck,.subject-grid,.material-grid,.game-grid,.creators-grid{grid-template-columns:repeat(2,1fr);}
+    .agent-specialist-grid{grid-template-columns:1fr 1fr;}
+    .chatbot-hello-title{font-size:32px;}
 }
 @media(max-width:600px){
     .stats{grid-template-columns:1fr 1fr;}
     .grade-grid{grid-template-columns:repeat(2,1fr);}
     .agents-deck,.subject-grid,.material-grid,.game-grid,.creators-grid{grid-template-columns:1fr;}
+    .agent-specialist-grid{grid-template-columns:1fr;}
+    .chatbot-hello-title{font-size:26px;}
     .top-nav{padding:10px 16px;}
     .section{padding:35px 16px;}
     .quiz-box{padding:20px;}
@@ -1760,32 +2077,7 @@ footer{
                 </div>
             </div>
 
-            <!-- PROMPT 2: GRADE (Only in Sign Up) -->
-            <div class="gate-field" id="gateFieldGroup_grade">
-                <label class="gate-label" for="gateGradeInput">
-                    <span class="gate-label-icon">🎓</span>
-                    <span>what grade are you in</span>
-                </label>
-                <div class="gate-input-wrapper">
-                    <span class="gate-input-icon">🪐</span>
-                    <select class="gate-input" id="gateGradeInput">
-                        <option value="1">Grade 1 (Foundation)</option>
-                        <option value="2">Grade 2 (Explorer)</option>
-                        <option value="3">Grade 3 (Discoverer)</option>
-                        <option value="4">Grade 4 (Builder)</option>
-                        <option value="5">Grade 5 (Thinker)</option>
-                        <option value="6">Grade 6 (Creator)</option>
-                        <option value="7" selected>Grade 7 (NPS Class 7B)</option>
-                        <option value="8">Grade 8 (Innovator)</option>
-                        <option value="9">Grade 9 (Analyst)</option>
-                        <option value="10">Grade 10 (Scholar)</option>
-                        <option value="11">Grade 11 (Specialist)</option>
-                        <option value="12">Grade 12 (Mastery)</option>
-                    </select>
-                </div>
-            </div>
-
-            <!-- PROMPT 3: EMAIL -->
+            <!-- PROMPT 2: EMAIL -->
             <div class="gate-field" id="gateFieldGroup_email">
                 <label class="gate-label" for="gateEmailInput">
                     <span class="gate-label-icon">📧</span>
@@ -1797,7 +2089,7 @@ footer{
                 </div>
             </div>
 
-            <!-- PROMPT 4: PASSWORD -->
+            <!-- PROMPT 3: PASSWORD -->
             <div class="gate-field" id="gateFieldGroup_password">
                 <label class="gate-label" for="gatePasswordInput">
                     <span class="gate-label-icon">🔒</span>
@@ -1826,7 +2118,7 @@ footer{
 <!-- ========================================== -->
 <aside id="leftSidebar">
     <div class="sidebar-header">
-        <div class="brand-badge" onclick="scrollToTop()">
+        <div class="brand-badge" onclick="navigateTo('home')">
             <div class="atom-icon">⚛️</div>
             <div class="brand-text">
                 <h1>ATOMIC</h1>
@@ -1837,28 +2129,42 @@ footer{
     </div>
 
     <div class="sidebar-nav">
+        <!-- MAIN NAVIGATION -->
+        <div class="nav-section-title">
+            <span>🧭</span>
+            <span>NAVIGATION</span>
+        </div>
+        <button class="sidebar-link active" id="sideNavHome" onclick="navigateTo('home')">
+            <span class="icon">🏠</span>
+            <span>Home Screen</span>
+        </button>
+        <button class="sidebar-link" id="sideNavChatbot" onclick="navigateTo('chatbot', 'vaibs')">
+            <span class="icon">⚡</span>
+            <span>Vaibs Chatbot</span>
+        </button>
+
         <!-- 4 AI AGENTS QUICK LAUNCH -->
         <div class="nav-section-title">
             <span>⚡</span>
             <span>4 AI STUDY AGENTS</span>
         </div>
         <div class="agents-grid-sidebar">
-            <button class="agent-mini-btn" onclick="openAgentPanel('vaibs')">
+            <button class="agent-mini-btn" onclick="navigateTo('chatbot', 'vaibs')">
                 <span class="agent-icon">📝</span>
                 <strong>VAIBS</strong>
                 <span>Notes & Quizzes</span>
             </button>
-            <button class="agent-mini-btn" onclick="openAgentPanel('avi')">
+            <button class="agent-mini-btn" onclick="navigateTo('chatbot', 'avi')">
                 <span class="agent-icon">🔢</span>
                 <strong>AVI</strong>
                 <span>Math & STEM</span>
             </button>
-            <button class="agent-mini-btn" onclick="openAgentPanel('arnie')">
+            <button class="agent-mini-btn" onclick="navigateTo('chatbot', 'arnie')">
                 <span class="agent-icon">🌍</span>
                 <strong>ARNIE</strong>
                 <span>Social & GK</span>
             </button>
-            <button class="agent-mini-btn" onclick="openAgentPanel('avans')">
+            <button class="agent-mini-btn" onclick="navigateTo('chatbot', 'avans')">
                 <span class="agent-icon">🧩</span>
                 <strong>AVANS</strong>
                 <span>Logic Lab</span>
@@ -1869,37 +2175,29 @@ footer{
             <span>🗺️</span>
             <span>EXPLORATION</span>
         </div>
-        <button class="sidebar-link active" onclick="scrollToSection('hero')">
-            <span class="icon">🚀</span>
-            <span>Dashboard</span>
-        </button>
-        <button class="sidebar-link" onclick="scrollToSection('agents')">
-            <span class="icon">🤖</span>
-            <span>4 AI Agents Deck</span>
-        </button>
-        <button class="sidebar-link" onclick="scrollToSection('grades')">
-            <span class="icon">🎓</span>
-            <span>Grade Selector</span>
-        </button>
-        <button class="sidebar-link" onclick="scrollToSection('learn')">
-            <span class="icon">📚</span>
-            <span>Curriculum Hub</span>
-        </button>
-        <button class="sidebar-link" onclick="scrollToSection('capsules')">
-            <span class="icon">💡</span>
-            <span>Knowledge Capsules</span>
-        </button>
-        <button class="sidebar-link" onclick="scrollToSection('games')">
+        <button class="sidebar-link" onclick="navigateTo('home', 'games')">
             <span class="icon">🎮</span>
             <span>Atomic Arcade</span>
         </button>
-        <button class="sidebar-link" onclick="scrollToSection('quiz')">
+        <button class="sidebar-link" onclick="navigateTo('home', 'intelligence')">
+            <span class="icon">🤖</span>
+            <span>Intelligence Engine</span>
+        </button>
+        <button class="sidebar-link" onclick="navigateTo('home', 'learn')">
+            <span class="icon">📚</span>
+            <span>Curriculum Hub</span>
+        </button>
+        <button class="sidebar-link" onclick="navigateTo('home', 'capsules')">
+            <span class="icon">💡</span>
+            <span>Knowledge Capsules</span>
+        </button>
+        <button class="sidebar-link" onclick="navigateTo('home', 'quiz')">
             <span class="icon">🧩</span>
             <span>Quiz Rush</span>
         </button>
-        <button class="sidebar-link" onclick="scrollToSection('creators')">
+        <button class="sidebar-link" onclick="navigateTo('home', 'creators')">
             <span class="icon">👥</span>
-            <span>Creators (7B)</span>
+            <span>Creators (NPS 7B)</span>
         </button>
     </div>
 
@@ -1909,7 +2207,7 @@ footer{
             <div class="user-avatar" id="sidebarAvatar">A</div>
             <div class="user-info">
                 <div class="user-name" id="sidebarUserName">Student</div>
-                <div class="user-grade" id="sidebarUserGrade">Grade 7 • NPS 7B</div>
+                <div class="user-grade" id="sidebarUserGrade">Atomic Scholar • NPS 7B</div>
             </div>
             <span style="font-size:16px;color:var(--neon-blue)">⚙️</span>
         </div>
@@ -1926,18 +2224,19 @@ footer{
         <nav class="top-nav">
             <div style="display:flex;align-items:center;gap:18px">
                 <button class="mobile-toggle" onclick="toggleSidebar()">☰</button>
-                <a href="#" class="brand-title-nav" onclick="scrollToSection('hero')">
+                <a class="brand-title-nav" onclick="navigateTo('home')" style="cursor:pointer">
                     <span style="display:inline-block;width:12px;height:12px;border-radius:50%;background:#ffffff;box-shadow:0 0 10px #ffffff;"></span>
                     <strong>Atomic</strong>
                 </a>
             </div>
 
             <div class="nav-links-center">
-                <a onclick="scrollToSection('games')" class="nav-link-item">Games</a>
-                <a onclick="scrollToSection('agents')" class="nav-link-item">AI Tutors</a>
-                <a onclick="scrollToSection('learn')" class="nav-link-item">Curriculum</a>
-                <a onclick="scrollToSection('grades')" class="nav-link-item">Grades</a>
-                <a onclick="scrollToSection('quiz')" class="nav-link-item">Quiz</a>
+                <a onclick="navigateTo('home')" class="nav-link-item" id="topNavHome">🏠 Home</a>
+                <a onclick="navigateTo('chatbot', 'vaibs')" class="nav-link-item active" id="topNavChatbot">⚡ Vaibs Chatbot</a>
+                <a onclick="navigateTo('home', 'games')" class="nav-link-item">Games</a>
+                <a onclick="navigateTo('home', 'learn')" class="nav-link-item">Curriculum</a>
+                <a onclick="navigateTo('home', 'quiz')" class="nav-link-item">Quiz</a>
+                <a onclick="navigateTo('home', 'creators')" class="nav-link-item">Creators</a>
             </div>
 
             <div class="header-stats">
@@ -1945,555 +2244,623 @@ footer{
                     ⚡ XP: <span id="xpHeader">1,450</span>
                 </div>
                 <div class="header-stat-pill">
-                    LVL <span id="levelHeader">07</span>
-                </div>
-                <div class="header-stat-pill">
                     🔥 <span id="streakHeader">8 Days</span>
                 </div>
             </div>
 
             <div class="header-actions">
-                <button class="btn btn-white-pill" onclick="openAgentPanel('vaibs')">
-                    Get Started
+                <button class="btn btn-white-pill" onclick="navigateTo('chatbot', 'vaibs')">
+                    ⚡ Ask Vaibs
                 </button>
             </div>
         </nav>
     </header>
 
     <main>
-        <!-- HERO SECTION WITH CELESTIAL BACKGROUND & MOUNTAINS -->
-        <section class="hero-wrapper" id="hero">
-            <!-- Dynamic Celestial Cosmos & Mountain Horizon Silhouette -->
-            <div class="hero-backdrop-container">
-                <div class="celestial-sphere"></div>
-                <svg class="orbital-rings-svg" viewBox="0 0 900 540" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <ellipse cx="450" cy="270" rx="380" ry="140" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" transform="rotate(-14 450 270)" stroke-dasharray="6 8"/>
-                    <ellipse cx="450" cy="270" rx="420" ry="110" stroke="rgba(255,255,255,0.14)" stroke-width="1" transform="rotate(18 450 270)" stroke-dasharray="12 14"/>
-                    <ellipse cx="450" cy="270" rx="340" ry="90" stroke="rgba(255,255,255,0.25)" stroke-width="1.4" transform="rotate(-6 450 270)"/>
-                    <ellipse cx="450" cy="270" rx="280" ry="60" stroke="rgba(255,255,255,0.12)" stroke-width="1" transform="rotate(25 450 270)" stroke-dasharray="4 6"/>
-                </svg>
-                <svg class="mountain-silhouette-svg" viewBox="0 0 1440 280" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-                    <defs>
-                        <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#1c202a" stop-opacity="0.9"/>
-                            <stop offset="60%" stop-color="#0f1118" stop-opacity="0.95"/>
-                            <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
-                        </linearGradient>
-                        <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="#2d3342" stop-opacity="0.8"/>
-                            <stop offset="70%" stop-color="#141720" stop-opacity="0.95"/>
-                            <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
-                        </linearGradient>
-                        <linearGradient id="mtnHaze" x1="0%" y1="0%" x2="0%" y2="100%">
-                            <stop offset="0%" stop-color="rgba(100, 116, 139, 0.15)"/>
-                            <stop offset="60%" stop-color="rgba(15, 23, 42, 0.4)"/>
-                            <stop offset="100%" stop-color="#000000"/>
-                        </linearGradient>
-                    </defs>
-                    <path d="M0 280 L0 180 L90 140 L160 165 L240 115 L320 155 L420 90 L520 145 L620 80 L720 130 L830 70 L940 125 L1060 65 L1180 135 L1290 85 L1380 140 L1440 110 L1440 280 Z" fill="url(#mtnGrad1)"/>
-                    <path d="M0 280 L0 210 L70 180 L130 200 L210 150 L280 190 L380 120 L460 175 L560 110 L660 160 L760 95 L870 155 L980 85 L1100 150 L1210 105 L1320 165 L1400 135 L1440 150 L1440 280 Z" fill="url(#mtnGrad2)"/>
-                    <path d="M420 90 L430 110 L415 118 Z M620 80 L635 105 L615 110 Z M830 70 L845 95 L825 100 Z M1060 65 L1075 92 L1055 96 Z M380 120 L395 140 L375 145 Z M560 110 L575 130 L555 135 Z M760 95 L778 120 L755 125 Z M980 85 L998 110 L975 115 Z" fill="rgba(255,255,255,0.22)"/>
-                    <rect y="120" width="1440" height="160" fill="url(#mtnHaze)"/>
-                    <rect y="220" width="1440" height="60" fill="url(#mtnGrad1)"/>
-                </svg>
-            </div>
-
-            <!-- Centered Hero Typography & CTA -->
-            <div class="hero-content">
-                <div class="hero-tag-pill">
-                    <span>🚀</span> Next Gen Learning
-                </div>
-                <h1 class="hero-headline">Master Every Subject at Atomic Speed.</h1>
-                <p class="hero-subtext">
-                    Personalized AI tutoring meets addictive mini-games. Studying has never felt this much like playing.
-                </p>
-                <div class="hero-cta-group">
-                    <button class="btn btn-white-pill" onclick="scrollToSection('games')">
-                        Launch Your Journey <span style="font-size:16px;margin-left:4px">→</span>
-                    </button>
-                    <button class="btn btn-glass-pill" onclick="openAgentPanel('vaibs')">
-                        <span style="font-size:12px;margin-right:2px">▷</span> See How It Works
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- LEVEL UP YOUR KNOWLEDGE (GAMES 3-COL SECTION) -->
-        <section class="level-up-section" id="games">
-            <div class="level-up-header">
-                <h2>Level Up Your Knowledge</h2>
-                <p>Dive into immersive mini-games designed to make learning addictive.</p>
-            </div>
-            <div class="games-3col-grid">
-                <!-- CARD 1: EQUATION QUEST -->
-                <div class="game-card-pro" onclick="openGame('speed')">
-                    <div>
-                        <div class="game-card-icon-box">⊞</div>
-                        <h3>Equation Quest</h3>
-                        <p>Battle math monsters by solving rapid-fire algebraic equations. Unlock powerful upgrades.</p>
+        <!-- ========================================== -->
+        <!-- FULL-PAGE VAIBS CHATBOT VIEW               -->
+        <!-- ========================================== -->
+        <section class="chatbot-page-view" id="chatbotView">
+            <div class="chatbot-page-container">
+                <!-- GREETING HEADER -->
+                <div class="chatbot-hero-header">
+                    <div class="chatbot-welcome-badge">
+                        <span class="pulse-dot"></span>
+                        <span>VAIBS AI STUDY MASTER • NPS CLASS 7B</span>
                     </div>
-                    <span class="game-card-play-link">Play Now <span>→</span></span>
-                </div>
-
-                <!-- CARD 2: VOCABULARY VOID -->
-                <div class="game-card-pro" onclick="openGame('memory')">
-                    <div>
-                        <div class="game-card-icon-box">AZ</div>
-                        <h3>Vocabulary Void</h3>
-                        <p>Navigate a black hole by constructing complex words from falling letter meteorites.</p>
-                    </div>
-                    <span class="game-card-play-link">Play Now <span>→</span></span>
-                </div>
-
-                <!-- CARD 3: HISTORY HERO -->
-                <div class="game-card-pro" onclick="scrollToSection('quiz')">
-                    <div>
-                        <div class="game-card-icon-box">◱</div>
-                        <h3>History Hero</h3>
-                        <p>Time-travel to key historical events. Make critical decisions to ensure the timeline remains intact.</p>
-                    </div>
-                    <span class="game-card-play-link">Play Now <span>→</span></span>
-                </div>
-            </div>
-        </section>
-
-        <!-- THE INTELLIGENCE ENGINE BENTO SECTION -->
-        <section class="intelligence-section" id="intelligence">
-            <div class="intelligence-header">
-                <h2>The Intelligence Engine</h2>
-                <p>Powered by next-gen AI to adapt to your unique learning style.</p>
-            </div>
-            <div class="intelligence-bento-grid">
-                <!-- BENTO 1: 24/7 AI TUTORS -->
-                <div class="bento-card" style="grid-row:span 2;">
-                    <div>
-                        <div class="bento-card-icon">🤖</div>
-                        <h3>24/7 AI Tutors</h3>
-                        <p>Stuck on a concept at 3 AM? Your personal AI tutor is always online, ready to explain complex topics with infinite patience and tailored examples.</p>
-                        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;">
-                            <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="openAgentPanel('vaibs')">📝 Vaibs</button>
-                            <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="openAgentPanel('avi')">🔢 Avi</button>
-                            <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="openAgentPanel('arnie')">🌍 Arnie</button>
-                            <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="openAgentPanel('avans')">🧩 Avans</button>
-                        </div>
-                    </div>
-                    <button class="btn btn-white-pill" style="width:100%;margin-top:24px;" onclick="openAgentPanel('vaibs')">Consult AI Tutors →</button>
-                </div>
-
-                <!-- BENTO 2: ADAPTIVE LEARNING PATHS -->
-                <div class="bento-card">
-                    <div>
-                        <div class="bento-card-icon">⑂</div>
-                        <h3>Adaptive Learning Paths</h3>
-                        <p>The curriculum morphs based on your strengths and weaknesses in real-time.</p>
+                    <h1 class="chatbot-hello-title" id="chatbotHelloTitle">Hello, Scholar! 👋</h1>
+                    <p class="chatbot-hello-sub" id="chatbotHelloSub">Welcome to Vaibs AI, your personal multi-agent study companion from NPS 7B. Select an AI specialist below or ask your academic question.</p>
+                    
+                    <!-- 4 AGENT SPECIALIST SELECTOR CARDS -->
+                    <div class="agent-specialist-grid">
+                        <button class="agent-spec-card active" id="fulltab-vaibs" onclick="switchAgent('vaibs')">
+                            <div class="spec-card-icon">📝</div>
+                            <div class="spec-card-info">
+                                <strong>VAIBS</strong>
+                                <span>Notes & Quizzes</span>
+                            </div>
+                        </button>
+                        <button class="agent-spec-card" id="fulltab-avi" onclick="switchAgent('avi')">
+                            <div class="spec-card-icon">🔢</div>
+                            <div class="spec-card-info">
+                                <strong>AVI</strong>
+                                <span>Math & STEM</span>
+                            </div>
+                        </button>
+                        <button class="agent-spec-card" id="fulltab-arnie" onclick="switchAgent('arnie')">
+                            <div class="spec-card-icon">🌍</div>
+                            <div class="spec-card-info">
+                                <strong>ARNIE</strong>
+                                <span>Social & GK</span>
+                            </div>
+                        </button>
+                        <button class="agent-spec-card" id="fulltab-avans" onclick="switchAgent('avans')">
+                            <div class="spec-card-icon">🧩</div>
+                            <div class="spec-card-info">
+                                <strong>AVANS</strong>
+                                <span>Logic Lab</span>
+                            </div>
+                        </button>
                     </div>
                 </div>
 
-                <!-- BENTO 3: INSTANT FLASHCARD MAGIC -->
-                <div class="bento-card">
-                    <div>
-                        <div class="bento-card-icon">🗂️</div>
-                        <h3>Instant Flashcard Magic</h3>
-                        <p>Upload notes, and our AI instantly generates a deck of smart, spaced-repetition flashcards.</p>
-                    </div>
-                </div>
-
-                <!-- BENTO 4: PROGRESS ANALYTICS (WIDE) -->
-                <div class="bento-card progress-analytics-card" style="grid-column:1 / -1;margin-top:4px;">
-                    <div>
-                        <h3>Progress Analytics</h3>
-                        <p>Visualize your neural network growth. See exactly which subjects you've mastered and where you need a boost.</p>
-                    </div>
-                    <div class="progress-meter-container">
-                        <svg width="100" height="100" viewBox="0 0 100 100">
-                            <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.12)" stroke-width="8" fill="none"/>
-                            <circle cx="50" cy="50" r="42" stroke="#ffffff" stroke-width="8" fill="none" stroke-dasharray="264" stroke-dashoffset="34" stroke-linecap="round" transform="rotate(-90 50 50)"/>
-                        </svg>
-                        <div class="progress-meter-text">87%</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- STATS -->
-        <section class="stats">
-            <div class="stat">
-                <div class="stat-icon">⚡</div>
-                <div>
-                    <strong id="xp">1,450</strong>
-                    <span>XP EARNED</span>
-                </div>
-            </div>
-            <div class="stat">
-                <div class="stat-icon">🪐</div>
-                <div>
-                    <strong id="level">07</strong>
-                    <span>ATOMIC LEVEL</span>
-                </div>
-            </div>
-            <div class="stat">
-                <div class="stat-icon">🎓</div>
-                <div>
-                    <strong id="activeGradeStat">Grade 7</strong>
-                    <span>ACTIVE GRADE</span>
-                </div>
-            </div>
-            <div class="stat">
-                <div class="stat-icon">🔥</div>
-                <div>
-                    <strong id="streak">8 Days</strong>
-                    <span>DAY STREAK</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- 4 DEDICATED AI AGENTS DECK -->
-        <section class="agents-section" id="agents">
-            <div class="section-title">
-                <div>
-                    <h2>Meet Your 4 Dedicated AI Agents</h2>
-                    <p>Each agent is fine-tuned for deep conceptual mastery and instant academic problem-solving.</p>
-                </div>
-            </div>
-            <div class="agents-deck">
-                <!-- AGENT 1: VAIBS -->
-                <div class="agent-card" onclick="openAgentPanel('vaibs')">
-                    <div>
-                        <div class="agent-card-head">
-                            <div class="agent-card-avatar">📝</div>
+                <!-- FULL CHAT INTERFACE CARD -->
+                <div class="full-chat-card">
+                    <div class="full-chat-topbar">
+                        <div class="full-chat-agent-info">
+                            <div class="chat-agent-avatar" id="fullChatAvatar">📝</div>
                             <div>
-                                <h3>VAIBS</h3>
-                                <span class="agent-role">Notes & Quizzes</span>
+                                <h3 id="fullChatAgentName">Ask Vaibs</h3>
+                                <span id="fullChatAgentSubtitle">Study Notes, Flashcards & Concept Quizzes</span>
                             </div>
                         </div>
-                        <p>Specialist in crystal-clear revision notes, syllabus summaries, smart flash cards, and rapid-fire knowledge checks.</p>
-                        <div class="agent-card-tags">
-                            <span class="agent-card-tag">📋 Study Notes</span>
-                            <span class="agent-card-tag">🗂️ Flashcards</span>
-                            <span class="agent-card-tag">⚡ Concept Quizzes</span>
+                        <div class="full-chat-actions">
+                            <button class="btn-chat-action" onclick="clearFullChat()" title="Clear Chat History">🗑️ Clear Chat</button>
+                            <button class="btn-chat-action btn-home-accent" onclick="navigateTo('home')" title="Go to Home Screen">🏠 Main Screen</button>
                         </div>
                     </div>
-                    <button class="btn" style="width:100%">⚡ Consult Vaibs</button>
+
+                    <!-- QUICK PROMPT CHIPS -->
+                    <div class="full-chat-chips" id="fullAgentChips">
+                        <!-- Populated by JS -->
+                    </div>
+
+                    <!-- CHAT MESSAGES TRANSCRIPT -->
+                    <div class="full-chat-messages" id="chat">
+                        <div class="message ai" id="welcomeMessage">
+                            ⚡ <strong>Hey there! I'm Vaibs</strong>, your Study Master.<br><br>
+                            I specialize in generating revision notes, smart flashcards, and quick concept quizzes. How can I help you study today?
+                        </div>
+                    </div>
+
+                    <!-- INPUT AREA -->
+                    <div class="full-chat-input-area">
+                        <div class="full-input-box">
+                            <input id="aiInput" placeholder="Ask Vaibs anything... (e.g. 'Summarize Cell Biology' or 'Calculate 67² step by step')" onkeydown="if(event.key==='Enter')sendAgentMessage()">
+                            <button class="btn btn-white-pill full-send-btn" onclick="sendAgentMessage()">
+                                <span>Send</span>
+                                <span style="font-size:16px">↑</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- HOME / MAIN APPLICATION VIEW              -->
+        <!-- ========================================== -->
+        <div class="home-page-view" id="homeView">
+            <!-- HERO SECTION WITH CELESTIAL BACKGROUND & MOUNTAINS -->
+            <section class="hero-wrapper" id="hero">
+                <!-- Dynamic Celestial Cosmos & Mountain Horizon Silhouette -->
+                <div class="hero-backdrop-container">
+                    <div class="celestial-sphere"></div>
+                    <svg class="orbital-rings-svg" viewBox="0 0 900 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <ellipse cx="450" cy="270" rx="380" ry="140" stroke="rgba(255,255,255,0.22)" stroke-width="1.2" transform="rotate(-14 450 270)" stroke-dasharray="6 8"/>
+                        <ellipse cx="450" cy="270" rx="420" ry="110" stroke="rgba(255,255,255,0.14)" stroke-width="1" transform="rotate(18 450 270)" stroke-dasharray="12 14"/>
+                        <ellipse cx="450" cy="270" rx="340" ry="90" stroke="rgba(255,255,255,0.25)" stroke-width="1.4" transform="rotate(-6 450 270)"/>
+                        <ellipse cx="450" cy="270" rx="280" ry="60" stroke="rgba(255,255,255,0.12)" stroke-width="1" transform="rotate(25 450 270)" stroke-dasharray="4 6"/>
+                    </svg>
+                    <svg class="mountain-silhouette-svg" viewBox="0 0 1440 280" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+                        <defs>
+                            <linearGradient id="mtnGrad1" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#1c202a" stop-opacity="0.9"/>
+                                <stop offset="60%" stop-color="#0f1118" stop-opacity="0.95"/>
+                                <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+                            </linearGradient>
+                            <linearGradient id="mtnGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#2d3342" stop-opacity="0.8"/>
+                                <stop offset="70%" stop-color="#141720" stop-opacity="0.95"/>
+                                <stop offset="100%" stop-color="#000000" stop-opacity="1"/>
+                            </linearGradient>
+                            <linearGradient id="mtnHaze" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="rgba(100, 116, 139, 0.15)"/>
+                                <stop offset="60%" stop-color="rgba(15, 23, 42, 0.4)"/>
+                                <stop offset="100%" stop-color="#000000"/>
+                            </linearGradient>
+                        </defs>
+                        <path d="M0 280 L0 180 L90 140 L160 165 L240 115 L320 155 L420 90 L520 145 L620 80 L720 130 L830 70 L940 125 L1060 65 L1180 135 L1290 85 L1380 140 L1440 110 L1440 280 Z" fill="url(#mtnGrad1)"/>
+                        <path d="M0 280 L0 210 L70 180 L130 200 L210 150 L280 190 L380 120 L460 175 L560 110 L660 160 L760 95 L870 155 L980 85 L1100 150 L1210 105 L1320 165 L1400 135 L1440 150 L1440 280 Z" fill="url(#mtnGrad2)"/>
+                        <path d="M420 90 L430 110 L415 118 Z M620 80 L635 105 L615 110 Z M830 70 L845 95 L825 100 Z M1060 65 L1075 92 L1055 96 Z M380 120 L395 140 L375 145 Z M560 110 L575 130 L555 135 Z M760 95 L778 120 L755 125 Z M980 85 L998 110 L975 115 Z" fill="rgba(255,255,255,0.22)"/>
+                        <rect y="120" width="1440" height="160" fill="url(#mtnHaze)"/>
+                        <rect y="220" width="1440" height="60" fill="url(#mtnGrad1)"/>
+                    </svg>
                 </div>
 
-                <!-- AGENT 2: AVI -->
-                <div class="agent-card" onclick="openAgentPanel('avi')">
-                    <div>
-                        <div class="agent-card-head">
-                            <div class="agent-card-avatar">🔢</div>
-                            <div>
-                                <h3>AVI</h3>
-                                <span class="agent-role">STEM & Languages</span>
+                <!-- Centered Hero Typography & CTA -->
+                <div class="hero-content">
+                    <div class="hero-tag-pill">
+                        <span>🚀</span> Next Gen Learning
+                    </div>
+                    <h1 class="hero-headline">Master Every Subject at Atomic Speed.</h1>
+                    <p class="hero-subtext">
+                        Personalized AI tutoring meets addictive mini-games. Studying has never felt this much like playing.
+                    </p>
+                    <div class="hero-cta-group">
+                        <button class="btn btn-white-pill" onclick="navigateTo('home', 'games')">
+                            Launch Your Journey <span style="font-size:16px;margin-left:4px">→</span>
+                        </button>
+                        <button class="btn btn-glass-pill" onclick="navigateTo('chatbot', 'vaibs')">
+                            <span style="font-size:12px;margin-right:2px">▷</span> Open Vaibs AI
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEVEL UP YOUR KNOWLEDGE (GAMES 3-COL SECTION) -->
+            <section class="level-up-section" id="games">
+                <div class="level-up-header">
+                    <h2>Level Up Your Knowledge</h2>
+                    <p>Dive into immersive mini-games designed to make learning addictive.</p>
+                </div>
+                <div class="games-3col-grid">
+                    <!-- CARD 1: EQUATION QUEST -->
+                    <div class="game-card-pro" onclick="openGame('speed')">
+                        <div>
+                            <div class="game-card-icon-box">⊞</div>
+                            <h3>Equation Quest</h3>
+                            <p>Battle math monsters by solving rapid-fire algebraic equations. Unlock powerful upgrades.</p>
+                        </div>
+                        <span class="game-card-play-link">Play Now <span>→</span></span>
+                    </div>
+
+                    <!-- CARD 2: VOCABULARY VOID -->
+                    <div class="game-card-pro" onclick="openGame('memory')">
+                        <div>
+                            <div class="game-card-icon-box">AZ</div>
+                            <h3>Vocabulary Void</h3>
+                            <p>Navigate a black hole by constructing complex words from falling letter meteorites.</p>
+                        </div>
+                        <span class="game-card-play-link">Play Now <span>→</span></span>
+                    </div>
+
+                    <!-- CARD 3: HISTORY HERO -->
+                    <div class="game-card-pro" onclick="navigateTo('home', 'quiz')">
+                        <div>
+                            <div class="game-card-icon-box">◱</div>
+                            <h3>History Hero</h3>
+                            <p>Time-travel to key historical events. Make critical decisions to ensure the timeline remains intact.</p>
+                        </div>
+                        <span class="game-card-play-link">Play Now <span>→</span></span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- THE INTELLIGENCE ENGINE BENTO SECTION -->
+            <section class="intelligence-section" id="intelligence">
+                <div class="intelligence-header">
+                    <h2>The Intelligence Engine</h2>
+                    <p>Powered by next-gen AI to adapt to your unique learning style.</p>
+                </div>
+                <div class="intelligence-bento-grid">
+                    <!-- BENTO 1: 24/7 AI TUTORS -->
+                    <div class="bento-card" style="grid-row:span 2;">
+                        <div>
+                            <div class="bento-card-icon">🤖</div>
+                            <h3>24/7 AI Tutors</h3>
+                            <p>Stuck on a concept at 3 AM? Your personal AI tutor is always online, ready to explain complex topics with infinite patience and tailored examples.</p>
+                            <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:24px;">
+                                <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="navigateTo('chatbot', 'vaibs')">📝 Vaibs</button>
+                                <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="navigateTo('chatbot', 'avi')">🔢 Avi</button>
+                                <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="navigateTo('chatbot', 'arnie')">🌍 Arnie</button>
+                                <button class="btn btn-glass-pill" style="padding:6px 14px;font-size:13px;" onclick="navigateTo('chatbot', 'avans')">🧩 Avans</button>
                             </div>
                         </div>
-                        <p>Master solver for Mathematics proofs, Physics laws, Chemistry reactions, Python code, and English/Foreign grammar.</p>
-                        <div class="agent-card-tags">
-                            <span class="agent-card-tag">📐 Math Equations</span>
-                            <span class="agent-card-tag">🧪 Science Lab</span>
-                            <span class="agent-card-tag">💻 Code & English</span>
+                        <button class="btn btn-white-pill" style="width:100%;margin-top:24px;" onclick="navigateTo('chatbot', 'vaibs')">Consult AI Tutors →</button>
+                    </div>
+
+                    <!-- BENTO 2: ADAPTIVE LEARNING PATHS -->
+                    <div class="bento-card">
+                        <div>
+                            <div class="bento-card-icon">⑂</div>
+                            <h3>Adaptive Learning Paths</h3>
+                            <p>The curriculum morphs based on your strengths and weaknesses in real-time.</p>
                         </div>
                     </div>
-                    <button class="btn" style="width:100%">🔢 Consult Avi</button>
-                </div>
 
-                <!-- AGENT 3: ARNIE -->
-                <div class="agent-card" onclick="openAgentPanel('arnie')">
+                    <!-- BENTO 3: INSTANT FLASHCARD MAGIC -->
+                    <div class="bento-card">
+                        <div>
+                            <div class="bento-card-icon">🗂️</div>
+                            <h3>Instant Flashcard Magic</h3>
+                            <p>Upload notes, and our AI instantly generates a deck of smart, spaced-repetition flashcards.</p>
+                        </div>
+                    </div>
+
+                    <!-- BENTO 4: PROGRESS ANALYTICS (WIDE) -->
+                    <div class="bento-card progress-analytics-card" style="grid-column:1 / -1;margin-top:4px;">
+                        <div>
+                            <h3>Progress Analytics</h3>
+                            <p>Visualize your neural network growth. See exactly which subjects you've mastered and where you need a boost.</p>
+                        </div>
+                        <div class="progress-meter-container">
+                            <svg width="100" height="100" viewBox="0 0 100 100">
+                                <circle cx="50" cy="50" r="42" stroke="rgba(255,255,255,0.12)" stroke-width="8" fill="none"/>
+                                <circle cx="50" cy="50" r="42" stroke="#ffffff" stroke-width="8" fill="none" stroke-dasharray="264" stroke-dashoffset="34" stroke-linecap="round" transform="rotate(-90 50 50)"/>
+                            </svg>
+                            <div class="progress-meter-text">87%</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STATS -->
+            <section class="stats">
+                <div class="stat">
+                    <div class="stat-icon">⚡</div>
                     <div>
-                        <div class="agent-card-head">
-                            <div class="agent-card-avatar">🌍</div>
-                            <div>
-                                <h3>ARNIE</h3>
-                                <span class="agent-role">Social, GK & Art</span>
+                        <strong id="xp">1,450</strong>
+                        <span>XP EARNED</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">🪐</div>
+                    <div>
+                        <strong id="level">Scholar</strong>
+                        <span>ATOMIC STATUS</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">🎓</div>
+                    <div>
+                        <strong id="activeGradeStat">NPS 7B</strong>
+                        <span>COMMUNITY</span>
+                    </div>
+                </div>
+                <div class="stat">
+                    <div class="stat-icon">🔥</div>
+                    <div>
+                        <strong id="streak">8 Days</strong>
+                        <span>DAY STREAK</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4 DEDICATED AI AGENTS DECK -->
+            <section class="agents-section" id="agents">
+                <div class="section-title">
+                    <div>
+                        <h2>Meet Your 4 Dedicated AI Agents</h2>
+                        <p>Each agent is fine-tuned for deep conceptual mastery and instant academic problem-solving.</p>
+                    </div>
+                </div>
+                <div class="agents-deck">
+                    <!-- AGENT 1: VAIBS -->
+                    <div class="agent-card" onclick="navigateTo('chatbot', 'vaibs')">
+                        <div>
+                            <div class="agent-card-head">
+                                <div class="agent-card-avatar">📝</div>
+                                <div>
+                                    <h3>VAIBS</h3>
+                                    <span class="agent-role">Notes & Quizzes</span>
+                                </div>
+                            </div>
+                            <p>Specialist in crystal-clear revision notes, syllabus summaries, smart flash cards, and rapid-fire knowledge checks.</p>
+                            <div class="agent-card-tags">
+                                <span class="agent-card-tag">📋 Study Notes</span>
+                                <span class="agent-card-tag">🗂️ Flashcards</span>
+                                <span class="agent-card-tag">⚡ Concept Quizzes</span>
                             </div>
                         </div>
-                        <p>World historian, geography cartographer, visual art theorist, and cosmos general knowledge encyclopedist.</p>
-                        <div class="agent-card-tags">
-                            <span class="agent-card-tag">🏛️ History & Civics</span>
-                            <span class="agent-card-tag">🗺️ Geography</span>
-                            <span class="agent-card-tag">🎨 Art & Design</span>
-                        </div>
+                        <button class="btn" style="width:100%">⚡ Consult Vaibs</button>
                     </div>
-                    <button class="btn" style="width:100%">🌍 Consult Arnie</button>
-                </div>
 
-                <!-- AGENT 4: AVANS -->
-                <div class="agent-card" onclick="openAgentPanel('avans')">
-                    <div>
-                        <div class="agent-card-head">
-                            <div class="agent-card-avatar">🧩</div>
-                            <div>
-                                <h3>AVANS</h3>
-                                <span class="agent-role">Logic & Brain Lab</span>
+                    <!-- AGENT 2: AVI -->
+                    <div class="agent-card" onclick="navigateTo('chatbot', 'avi')">
+                        <div>
+                            <div class="agent-card-head">
+                                <div class="agent-card-avatar">🔢</div>
+                                <div>
+                                    <h3>AVI</h3>
+                                    <span class="agent-role">STEM & Languages</span>
+                                </div>
+                            </div>
+                            <p>Master solver for Mathematics proofs, Physics laws, Chemistry reactions, Python code, and English/Foreign grammar.</p>
+                            <div class="agent-card-tags">
+                                <span class="agent-card-tag">📐 Math Equations</span>
+                                <span class="agent-card-tag">🧪 Science Lab</span>
+                                <span class="agent-card-tag">💻 Code & English</span>
                             </div>
                         </div>
-                        <p>Algorithmic deduction, critical reasoning puzzles, mathematical riddles, and strategic mental gymnastics.</p>
-                        <div class="agent-card-tags">
-                            <span class="agent-card-tag">🧠 Logic Riddles</span>
-                            <span class="agent-card-tag">♟️ Tactical Deduction</span>
-                            <span class="agent-card-tag">🔍 Pattern Analysis</span>
-                        </div>
+                        <button class="btn" style="width:100%">🔢 Consult Avi</button>
                     </div>
-                    <button class="btn" style="width:100%">🧩 Consult Avans</button>
-                </div>
-            </div>
-        </section>
 
-        <!-- GRADES SELECTOR -->
-        <section class="section" id="grades">
-            <div class="section-title">
-                <div>
-                    <h2>Choose Your Grade Level</h2>
-                    <p>Select any grade from 1 to 12 to calibrate all 4 AI agents to your exact curriculum.</p>
-                </div>
-            </div>
-            <div class="grade-grid">
-                <button class="grade" onclick="selectGrade(1,this)"><strong>01</strong><p>Foundation</p></button>
-                <button class="grade" onclick="selectGrade(2,this)"><strong>02</strong><p>Explorer</p></button>
-                <button class="grade" onclick="selectGrade(3,this)"><strong>03</strong><p>Discoverer</p></button>
-                <button class="grade" onclick="selectGrade(4,this)"><strong>04</strong><p>Builder</p></button>
-                <button class="grade" onclick="selectGrade(5,this)"><strong>05</strong><p>Thinker</p></button>
-                <button class="grade" onclick="selectGrade(6,this)"><strong>06</strong><p>Creator</p></button>
-                <button class="grade active" onclick="selectGrade(7,this)"><strong>07</strong><p>NPS 7B</p></button>
-                <button class="grade" onclick="selectGrade(8,this)"><strong>08</strong><p>Innovator</p></button>
-                <button class="grade" onclick="selectGrade(9,this)"><strong>09</strong><p>Analyst</p></button>
-                <button class="grade" onclick="selectGrade(10,this)"><strong>10</strong><p>Scholar</p></button>
-                <button class="grade" onclick="selectGrade(11,this)"><strong>11</strong><p>Specialist</p></button>
-                <button class="grade" onclick="selectGrade(12,this)"><strong>12</strong><p>Mastery</p></button>
-            </div>
-        </section>
-
-        <!-- SUBJECTS / CURRICULUM HUB -->
-        <section class="section" id="learn">
-            <div class="section-title">
-                <div>
-                    <h2 id="gradeTitle">Grade 7 Curriculum Hub</h2>
-                    <p>Click any subject to launch an instant AI session with the designated agent.</p>
-                </div>
-                <button class="btn" onclick="showSearch()">🔎 Filter Subjects</button>
-            </div>
-            <input id="searchBox" class="search" placeholder="Search math, science, algorithms, physics, history..." style="display:none" oninput="filterSubjects()">
-            <div class="subject-grid" id="subjects">
-                <div class="subject" data-search="mathematics math algebra geometry fractions equations" onclick="openSubjectWithAgent('Mathematics', 'avi')">
-                    <div class="subject-head">
-                        <div class="icon">🔢</div>
+                    <!-- AGENT 3: ARNIE -->
+                    <div class="agent-card" onclick="navigateTo('chatbot', 'arnie')">
                         <div>
-                            <h3>Mathematics</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
+                            <div class="agent-card-head">
+                                <div class="agent-card-avatar">🌍</div>
+                                <div>
+                                    <h3>ARNIE</h3>
+                                    <span class="agent-role">Social, GK & Art</span>
+                                </div>
+                            </div>
+                            <p>World historian, geography cartographer, visual art theorist, and cosmos general knowledge encyclopedist.</p>
+                            <div class="agent-card-tags">
+                                <span class="agent-card-tag">🏛️ History & Civics</span>
+                                <span class="agent-card-tag">🗺️ Geography</span>
+                                <span class="agent-card-tag">🎨 Art & Design</span>
+                            </div>
                         </div>
+                        <button class="btn" style="width:100%">🌍 Consult Arnie</button>
                     </div>
-                    <p>Linear equations, identities, algebraic expansions, geometry proofs, and rational numbers.</p>
-                    <span class="ask-badge">🔢 Ask Avi</span>
-                    <div class="bar"><i style="--progress:82%"></i></div>
-                </div>
 
-                <div class="subject" data-search="science physics chemistry biology matter light heat" onclick="openSubjectWithAgent('Science', 'avi')">
-                    <div class="subject-head">
-                        <div class="icon">🧪</div>
+                    <!-- AGENT 4: AVANS -->
+                    <div class="agent-card" onclick="navigateTo('chatbot', 'avans')">
                         <div>
-                            <h3>Science</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
+                            <div class="agent-card-head">
+                                <div class="agent-card-avatar">🧩</div>
+                                <div>
+                                    <h3>AVANS</h3>
+                                    <span class="agent-role">Logic & Brain Lab</span>
+                                </div>
+                            </div>
+                            <p>Algorithmic deduction, critical reasoning puzzles, mathematical riddles, and strategic mental gymnastics.</p>
+                            <div class="agent-card-tags">
+                                <span class="agent-card-tag">🧠 Logic Riddles</span>
+                                <span class="agent-card-tag">♟️ Tactical Deduction</span>
+                                <span class="agent-card-tag">🔍 Pattern Analysis</span>
+                            </div>
                         </div>
+                        <button class="btn" style="width:100%">🧩 Consult Avans</button>
                     </div>
-                    <p>Physics laws, optics, heat transfer, acids/bases, nutrition, and respiration in organisms.</p>
-                    <span class="ask-badge">🧪 Ask Avi</span>
-                    <div class="bar"><i style="--progress:70%"></i></div>
                 </div>
+            </section>
 
-                <div class="subject" data-search="english grammar language literature vocabulary essays" onclick="openSubjectWithAgent('English', 'avi')">
-                    <div class="subject-head">
-                        <div class="icon">📖</div>
-                        <div>
-                            <h3>English & Languages</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
-                        </div>
-                    </div>
-                    <p>Grammar tenses, active/passive voice, direct/indirect speech, and essay structuring.</p>
-                    <span class="ask-badge">📖 Ask Avi</span>
-                    <div class="bar"><i style="--progress:88%"></i></div>
-                </div>
-
-                <div class="subject" data-search="social studies history geography civilizations civics" onclick="openSubjectWithAgent('Social Studies', 'arnie')">
-                    <div class="subject-head">
-                        <div class="icon">🌍</div>
-                        <div>
-                            <h3>Social Studies</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Arnie</span>
-                        </div>
-                    </div>
-                    <p>Medieval India, Mughal Empire, lithosphere, atmospheric pressure, and democratic equality.</p>
-                    <span class="ask-badge">🌍 Ask Arnie</span>
-                    <div class="bar"><i style="--progress:65%"></i></div>
-                </div>
-
-                <div class="subject" data-search="computer science coding python loops web algorithms" onclick="openSubjectWithAgent('Computer Science', 'avi')">
-                    <div class="subject-head">
-                        <div class="icon">💻</div>
-                        <div>
-                            <h3>Computer Science</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
-                        </div>
-                    </div>
-                    <p>Python control flow, loops, data structures, HTML/CSS markup, and algorithmic logic.</p>
-                    <span class="ask-badge">💻 Ask Avi</span>
-                    <div class="bar"><i style="--progress:75%"></i></div>
-                </div>
-
-                <div class="subject" data-search="general knowledge trivia cosmos facts discoveries" onclick="openSubjectWithAgent('General Knowledge', 'arnie')">
-                    <div class="subject-head">
-                        <div class="icon">🧠</div>
-                        <div>
-                            <h3>General Knowledge</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Arnie</span>
-                        </div>
-                    </div>
-                    <p>Global milestones, world geography, space telescopes, cosmic exploration, and trivia.</p>
-                    <span class="ask-badge">🧠 Ask Arnie</span>
-                    <div class="bar"><i style="--progress:60%"></i></div>
-                </div>
-
-                <div class="subject" data-search="art creativity visual sketching design perspective" onclick="openSubjectWithAgent('Art & Design', 'arnie')">
-                    <div class="subject-head">
-                        <div class="icon">🎨</div>
-                        <div>
-                            <h3>Art & Creativity</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Arnie</span>
-                        </div>
-                    </div>
-                    <p>Perspective sketching, monochromatic color harmony, visual balance, and vector art.</p>
-                    <span class="ask-badge">🎨 Ask Arnie</span>
-                    <div class="bar"><i style="--progress:50%"></i></div>
-                </div>
-
-                <div class="subject" data-search="logic lab puzzles riddles brain critical reasoning" onclick="openSubjectWithAgent('Logic Lab', 'avans')">
-                    <div class="subject-head">
-                        <div class="icon">🧩</div>
-                        <div>
-                            <h3>Logic Lab</h3>
-                            <span style="font-size:11px;color:var(--neon-blue)">Handled by Avans</span>
-                        </div>
-                    </div>
-                    <p>Number sequences, spatial puzzles, critical deductions, syllogisms, and lateral riddles.</p>
-                    <span class="ask-badge">🧩 Ask Avans</span>
-                    <div class="bar"><i style="--progress:72%"></i></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- KNOWLEDGE CAPSULES -->
-        <section class="section" id="capsules">
-            <div class="section-title">
-                <div>
-                    <h2>Authoritative Knowledge Capsules</h2>
-                    <p>Standardized, curriculum-verified scientific principles and mathematical proofs.</p>
-                </div>
-            </div>
-            <div class="material-grid">
-                <article class="card">
-                    <span class="card-tag">🔢 MATHEMATICS</span>
-                    <h3>The Algebraic Square Identity</h3>
-                    <p>For any two real numbers $a$ and $b$, the expansion of $(a + b)²$ is calculated as $a² + 2ab + b²$. For example: $(60 + 7)² = 3600 + 840 + 49 = 4489$.</p>
-                    <div class="source">✓ CURRICULUM READY<br>Reference: <a href="https://www.britannica.com/science/algebra" target="_blank" rel="noopener">Encyclopaedia Britannica</a></div>
-                </article>
-                <article class="card">
-                    <span class="card-tag">☄️ ASTRONOMY</span>
-                    <h3>Why Do Comets Have Glowing Tails?</h3>
-                    <p>When a comet draws near the Sun, intense solar radiation vaporizes volatile ice from its nucleus, releasing glowing gas ions and dust into brilliant luminous tails.</p>
-                    <div class="source">✓ NASA VERIFIED<br>Reference: <a href="https://science.nasa.gov/solar-system/comets/" target="_blank" rel="noopener">NASA Solar System Exploration</a></div>
-                </article>
-                <article class="card">
-                    <span class="card-tag">💻 COMPUTER SCIENCE</span>
-                    <h3>Binary Representation & Bits</h3>
-                    <p>Binary code represents text and machine computations using two discrete voltage states: 0 (low voltage) and 1 (high voltage), forming 8-bit byte clusters.</p>
-                    <div class="source">✓ STEM READY<br>Reference: <a href="https://www.britannica.com/technology/binary-code" target="_blank" rel="noopener">Encyclopaedia Britannica</a></div>
-                </article>
-            </div>
-        </section>
-
-        <!-- GAMES -->
-        <section class="section" id="games">
-            <div class="section-title">
-                <div>
-                    <h2>Atomic Arcade</h2>
-                    <p>Gamified study engines to build speed arithmetic, mental agility, and formula recall.</p>
-                </div>
-            </div>
-            <div class="game-grid">
-                <div class="game">
+            <!-- SUBJECTS / CURRICULUM HUB -->
+            <section class="section" id="learn">
+                <div class="section-title">
                     <div>
-                        <div class="game-icon">⚡</div>
-                        <h3>Speed Math</h3>
-                        <p>Solve rapid arithmetic equations against a 20-second countdown. Multiply your score and earn atomic XP!</p>
+                        <h2 id="gradeTitle">Curriculum Hub</h2>
+                        <p>Click any subject to launch an instant AI session with the designated agent.</p>
                     </div>
-                    <button class="btn neon" style="margin-top:16px" onclick="openGame('speed')">Play Speed Math</button>
+                    <button class="btn" onclick="showSearch()">🔎 Filter Subjects</button>
                 </div>
-                <div class="game">
-                    <div>
-                        <div class="game-icon">🧠</div>
-                        <h3>Memory Match</h3>
-                        <p>Match formulas, scientific symbols, and math equations to train your visual memory bank.</p>
+                <input id="searchBox" class="search" placeholder="Search math, science, algorithms, physics, history..." style="display:none" oninput="filterSubjects()">
+                <div class="subject-grid" id="subjects">
+                    <div class="subject" data-search="mathematics math algebra geometry fractions equations" onclick="openSubjectWithAgent('Mathematics', 'avi')">
+                        <div class="subject-head">
+                            <div class="icon">🔢</div>
+                            <div>
+                                <h3>Mathematics</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
+                            </div>
+                        </div>
+                        <p>Linear equations, identities, algebraic expansions, geometry proofs, and rational numbers.</p>
+                        <span class="ask-badge">🔢 Ask Avi</span>
+                        <div class="bar"><i style="--progress:82%"></i></div>
                     </div>
-                    <button class="btn neon" style="margin-top:16px" onclick="openGame('memory')">Play Memory Match</button>
-                </div>
-                <div class="game">
-                    <div>
-                        <div class="game-icon">🚀</div>
-                        <h3>Quiz Rush</h3>
-                        <p>Answer multi-subject curriculum questions rapidly and climb the Atomic leaderboard.</p>
-                    </div>
-                    <button class="btn" style="margin-top:16px" onclick="scrollToSection('quiz')">Take Quiz Below</button>
-                </div>
-            </div>
-        </section>
 
-        <!-- QUIZ -->
-        <section class="section" id="quiz">
-            <div class="section-title">
-                <div>
-                    <h2>Atomic Knowledge Quiz</h2>
-                    <p>Test your knowledge and level up your Atomic rank.</p>
-                </div>
-            </div>
-            <div class="quiz-container">
-                <div class="quiz-box">
-                    <div class="quiz-meta">
-                        <span id="quizNumber">QUESTION 01 / 07</span>
-                        <span>+100 XP REWARD</span>
+                    <div class="subject" data-search="science physics chemistry biology matter light heat" onclick="openSubjectWithAgent('Science', 'avi')">
+                        <div class="subject-head">
+                            <div class="icon">🧪</div>
+                            <div>
+                                <h3>Science</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
+                            </div>
+                        </div>
+                        <p>Physics laws, optics, heat transfer, acids/bases, nutrition, and respiration in organisms.</p>
+                        <span class="ask-badge">🧪 Ask Avi</span>
+                        <div class="bar"><i style="--progress:70%"></i></div>
                     </div>
-                    <div class="quiz-question" id="question">Which algebraic identity calculates (a + b)²?</div>
-                    <div class="answers" id="answers"></div>
-                    <div class="quiz-result" id="quizResult"></div>
-                </div>
-            </div>
-        </section>
 
-        <!-- CREATORS -->
-        <section class="section" id="creators">
-            <div class="creators-box">
-                <div class="eyebrow" style="margin-bottom:8px;justify-content:center">STUDENT INNOVATION</div>
-                <h2 style="font-size:32px;color:var(--text-white)">Built with Passion by NPS Class 7B</h2>
-                <p style="color:var(--text-grey);margin-top:6px;font-size:14.5px">National Public School • Grade 7 Section B</p>
-                <div class="creators-grid">
-                    <div class="creator-card">
-                        <div class="creator-avatar">🚀</div>
-                        <strong>Aarav</strong>
-                        <span>AI & ARCHITECTURE LEAD</span>
-                        <p>Designed the 4 multi-agent AI system, full-stack server endpoints, and deep cosmic space UI.</p>
+                    <div class="subject" data-search="english grammar language literature vocabulary essays" onclick="openSubjectWithAgent('English', 'avi')">
+                        <div class="subject-head">
+                            <div class="icon">📖</div>
+                            <div>
+                                <h3>English & Languages</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
+                            </div>
+                        </div>
+                        <p>Grammar tenses, active/passive voice, direct/indirect speech, and essay structuring.</p>
+                        <span class="ask-badge">📖 Ask Avi</span>
+                        <div class="bar"><i style="--progress:88%"></i></div>
                     </div>
-                    <div class="creator-card">
-                        <div class="creator-avatar">⚡</div>
-                        <strong>Vaibhav</strong>
-                        <span>MATH & ENGINE LEAD</span>
-                        <p>Engineered Speed Math algorithms, Ask Vaibs study companion, and formula verification.</p>
+
+                    <div class="subject" data-search="social studies history geography civilizations civics" onclick="openSubjectWithAgent('Social Studies', 'arnie')">
+                        <div class="subject-head">
+                            <div class="icon">🌍</div>
+                            <div>
+                                <h3>Social Studies</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Arnie</span>
+                            </div>
+                        </div>
+                        <p>Medieval India, Mughal Empire, lithosphere, atmospheric pressure, and democratic equality.</p>
+                        <span class="ask-badge">🌍 Ask Arnie</span>
+                        <div class="bar"><i style="--progress:65%"></i></div>
                     </div>
-                    <div class="creator-card">
-                        <div class="creator-avatar">🎨</div>
-                        <strong>Aarnav</strong>
-                        <span>UX & CREATIVE LEAD</span>
-                        <p>Designed deep cosmic starfield comets, graphic identities, typography hierarchy, and audio.</p>
+
+                    <div class="subject" data-search="computer science coding python loops web algorithms" onclick="openSubjectWithAgent('Computer Science', 'avi')">
+                        <div class="subject-head">
+                            <div class="icon">💻</div>
+                            <div>
+                                <h3>Computer Science</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Avi</span>
+                            </div>
+                        </div>
+                        <p>Python control flow, loops, data structures, HTML/CSS markup, and algorithmic logic.</p>
+                        <span class="ask-badge">💻 Ask Avi</span>
+                        <div class="bar"><i style="--progress:75%"></i></div>
+                    </div>
+
+                    <div class="subject" data-search="general knowledge trivia cosmos facts discoveries" onclick="openSubjectWithAgent('General Knowledge', 'arnie')">
+                        <div class="subject-head">
+                            <div class="icon">🧠</div>
+                            <div>
+                                <h3>General Knowledge</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Arnie</span>
+                            </div>
+                        </div>
+                        <p>Global milestones, world geography, space telescopes, cosmic exploration, and trivia.</p>
+                        <span class="ask-badge">🧠 Ask Arnie</span>
+                        <div class="bar"><i style="--progress:60%"></i></div>
+                    </div>
+
+                    <div class="subject" data-search="art creativity visual sketching design perspective" onclick="openSubjectWithAgent('Art & Design', 'arnie')">
+                        <div class="subject-head">
+                            <div class="icon">🎨</div>
+                            <div>
+                                <h3>Art & Creativity</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Arnie</span>
+                            </div>
+                        </div>
+                        <p>Perspective sketching, monochromatic color harmony, visual balance, and vector art.</p>
+                        <span class="ask-badge">🎨 Ask Arnie</span>
+                        <div class="bar"><i style="--progress:50%"></i></div>
+                    </div>
+
+                    <div class="subject" data-search="logic lab puzzles riddles brain critical reasoning" onclick="openSubjectWithAgent('Logic Lab', 'avans')">
+                        <div class="subject-head">
+                            <div class="icon">🧩</div>
+                            <div>
+                                <h3>Logic Lab</h3>
+                                <span style="font-size:11px;color:var(--neon-blue)">Handled by Avans</span>
+                            </div>
+                        </div>
+                        <p>Number sequences, spatial puzzles, critical deductions, syllogisms, and lateral riddles.</p>
+                        <span class="ask-badge">🧩 Ask Avans</span>
+                        <div class="bar"><i style="--progress:72%"></i></div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+
+            <!-- KNOWLEDGE CAPSULES -->
+            <section class="section" id="capsules">
+                <div class="section-title">
+                    <div>
+                        <h2>Authoritative Knowledge Capsules</h2>
+                        <p>Standardized, curriculum-verified scientific principles and mathematical proofs.</p>
+                    </div>
+                </div>
+                <div class="material-grid">
+                    <article class="card">
+                        <span class="card-tag">🔢 MATHEMATICS</span>
+                        <h3>The Algebraic Square Identity</h3>
+                        <p>For any two real numbers $a$ and $b$, the expansion of $(a + b)²$ is calculated as $a² + 2ab + b²$. For example: $(60 + 7)² = 3600 + 840 + 49 = 4489$.</p>
+                        <div class="source">✓ CURRICULUM READY<br>Reference: <a href="https://www.britannica.com/science/algebra" target="_blank" rel="noopener">Encyclopaedia Britannica</a></div>
+                    </article>
+                    <article class="card">
+                        <span class="card-tag">☄️ ASTRONOMY</span>
+                        <h3>Why Do Comets Have Glowing Tails?</h3>
+                        <p>When a comet draws near the Sun, intense solar radiation vaporizes volatile ice from its nucleus, releasing glowing gas ions and dust into brilliant luminous tails.</p>
+                        <div class="source">✓ NASA VERIFIED<br>Reference: <a href="https://science.nasa.gov/solar-system/comets/" target="_blank" rel="noopener">NASA Solar System Exploration</a></div>
+                    </article>
+                    <article class="card">
+                        <span class="card-tag">💻 COMPUTER SCIENCE</span>
+                        <h3>Binary Representation & Bits</h3>
+                        <p>Binary code represents text and machine computations using two discrete voltage states: 0 (low voltage) and 1 (high voltage), forming 8-bit byte clusters.</p>
+                        <div class="source">✓ STEM READY<br>Reference: <a href="https://www.britannica.com/technology/binary-code" target="_blank" rel="noopener">Encyclopaedia Britannica</a></div>
+                    </article>
+                </div>
+            </section>
+
+            <!-- GAMES -->
+            <section class="section" id="games">
+                <div class="section-title">
+                    <div>
+                        <h2>Atomic Arcade</h2>
+                        <p>Gamified study engines to build speed arithmetic, mental agility, and formula recall.</p>
+                    </div>
+                </div>
+                <div class="game-grid">
+                    <div class="game">
+                        <div>
+                            <div class="game-icon">⚡</div>
+                            <h3>Speed Math</h3>
+                            <p>Solve rapid arithmetic equations against a 20-second countdown. Multiply your score and earn atomic XP!</p>
+                        </div>
+                        <button class="btn neon" style="margin-top:16px" onclick="openGame('speed')">Play Speed Math</button>
+                    </div>
+                    <div class="game">
+                        <div>
+                            <div class="game-icon">🧠</div>
+                            <h3>Memory Match</h3>
+                            <p>Match formulas, scientific symbols, and math equations to train your visual memory bank.</p>
+                        </div>
+                        <button class="btn neon" style="margin-top:16px" onclick="openGame('memory')">Play Memory Match</button>
+                    </div>
+                    <div class="game">
+                        <div>
+                            <div class="game-icon">🚀</div>
+                            <h3>Quiz Rush</h3>
+                            <p>Answer multi-subject curriculum questions rapidly and climb the Atomic leaderboard.</p>
+                        </div>
+                        <button class="btn" style="margin-top:16px" onclick="navigateTo('home', 'quiz')">Take Quiz Below</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- QUIZ -->
+            <section class="section" id="quiz">
+                <div class="section-title">
+                    <div>
+                        <h2>Atomic Knowledge Quiz</h2>
+                        <p>Test your knowledge and level up your Atomic rank.</p>
+                    </div>
+                </div>
+                <div class="quiz-container">
+                    <div class="quiz-box">
+                        <div class="quiz-meta">
+                            <span id="quizNumber">QUESTION 01 / 05</span>
+                            <span>+100 XP REWARD</span>
+                        </div>
+                        <div class="quiz-question" id="question">Which algebraic identity calculates (a + b)²?</div>
+                        <div class="answers" id="answers"></div>
+                        <div class="quiz-result" id="quizResult"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CREATORS -->
+            <section class="section" id="creators">
+                <div class="creators-box">
+                    <div class="eyebrow" style="margin-bottom:8px;justify-content:center">STUDENT INNOVATION</div>
+                    <h2 style="font-size:32px;color:var(--text-white)">Built with Passion by NPS Class 7B</h2>
+                    <p style="color:var(--text-grey);margin-top:6px;font-size:14.5px">National Public School • Grade 7 Section B</p>
+                    <div class="creators-grid">
+                        <div class="creator-card">
+                            <div class="creator-avatar">🚀</div>
+                            <strong>Aarav</strong>
+                            <span>AI & ARCHITECTURE LEAD</span>
+                            <p>Designed the 4 multi-agent AI system, full-stack server endpoints, and deep cosmic space UI.</p>
+                        </div>
+                        <div class="creator-card">
+                            <div class="creator-avatar">⚡</div>
+                            <strong>Vaibhav</strong>
+                            <span>MATH & ENGINE LEAD</span>
+                            <p>Engineered Speed Math algorithms, Ask Vaibs study companion, and formula verification.</p>
+                        </div>
+                        <div class="creator-card">
+                            <div class="creator-avatar">🎨</div>
+                            <strong>Aarnav</strong>
+                            <span>UX & CREATIVE LEAD</span>
+                            <p>Designed deep cosmic starfield comets, graphic identities, typography hierarchy, and audio.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
     </main>
 
     <footer>
@@ -2503,12 +2870,12 @@ footer{
                 <strong>Atomic</strong>
             </div>
             <div class="footer-nav">
-                <a onclick="scrollToSection('games')">Games</a>
-                <a onclick="scrollToSection('agents')">AI Tutors</a>
-                <a onclick="scrollToSection('learn')">Curriculum Hub</a>
-                <a onclick="scrollToSection('grades')">Grade Selector</a>
-                <a onclick="scrollToSection('quiz')">Quiz Rush</a>
-                <a onclick="scrollToSection('creators')">Creators (NPS 7B)</a>
+                <a onclick="navigateTo('home')">Home</a>
+                <a onclick="navigateTo('chatbot', 'vaibs')">Vaibs AI</a>
+                <a onclick="navigateTo('home', 'games')">Games</a>
+                <a onclick="navigateTo('home', 'learn')">Curriculum Hub</a>
+                <a onclick="navigateTo('home', 'quiz')">Quiz Rush</a>
+                <a onclick="navigateTo('home', 'creators')">Creators (NPS 7B)</a>
             </div>
             <p class="footer-copy">
                 © 2024 Atomic AI. Empowering Infinite Learning.<br>
@@ -2519,8 +2886,8 @@ footer{
 </div>
 
 <!-- FLOATING AI AGENT BUTTON -->
-<button class="float-ai-btn" onclick="openAgentPanel('vaibs')">
-    <span>⚡ Ask AI</span>
+<button class="float-ai-btn" onclick="navigateTo('chatbot', 'vaibs')">
+    <span>⚡ Vaibs Chatbot</span>
 </button>
 
 <!-- ========================================== -->
@@ -2530,7 +2897,6 @@ footer{
     <div class="panel-head">
         <h2><span id="panelAgentIcon">⚡</span> <span id="panelAgentTitle">Ask Vaibs</span></h2>
         <div style="display:flex;align-items:center;gap:10px">
-            <span class="panel-user-badge" id="panelUserBadge">Grade 7</span>
             <button class="close" onclick="closeAgentPanel()">&times;</button>
         </div>
     </div>
@@ -2555,21 +2921,21 @@ footer{
         </button>
     </div>
 
-    <!-- QUICK PROMPT CHIPS (DYNMIC PER AGENT) -->
+    <!-- QUICK PROMPT CHIPS (DYNAMIC PER AGENT) -->
     <div class="panel-chips" id="agentChips">
         <!-- populated dynamically -->
     </div>
 
-    <div class="chat" id="chat">
-        <div class="message ai" id="welcomeMessage">
+    <div class="chat" id="sideChat">
+        <div class="message ai">
             ⚡ <strong>Hey there! I'm Vaibs</strong>, your Study Master.<br><br>
             I specialize in generating revision notes, smart flashcards, and quick concept quizzes. How can I help you study today?
         </div>
     </div>
 
     <div class="chat-input">
-        <input id="aiInput" placeholder="Ask your AI agent anything..." onkeydown="if(event.key==='Enter')sendAgentMessage()">
-        <button class="btn neon" onclick="sendAgentMessage()">Send</button>
+        <input id="sideAiInput" placeholder="Ask your AI agent anything..." onkeydown="if(event.key==='Enter')sendSideAgentMessage()">
+        <button class="btn neon" onclick="sendSideAgentMessage()">Send</button>
     </div>
 </aside>
 
@@ -2921,16 +3287,16 @@ function setGateMode(mode) {
     const isSignUp = mode === 'signup';
     
     // Update Tabs
-    document.getElementById('tabGateSignUp').classList.toggle('active', isSignUp);
-    document.getElementById('tabGateSignIn').classList.toggle('active', !isSignUp);
+    const tabSignUp = document.getElementById('tabGateSignUp');
+    const tabSignIn = document.getElementById('tabGateSignIn');
+    if (tabSignUp) tabSignUp.classList.toggle('active', isSignUp);
+    if (tabSignIn) tabSignIn.classList.toggle('active', !isSignUp);
 
-    // Toggle name and grade visibility
+    // Toggle name visibility (Grade is not shown after sign up as requested)
     const nameGroup = document.getElementById('gateFieldGroup_name');
-    const gradeGroup = document.getElementById('gateFieldGroup_grade');
     const nameInput = document.getElementById('gateNameInput');
 
     if (nameGroup) nameGroup.style.display = isSignUp ? 'flex' : 'none';
-    if (gradeGroup) gradeGroup.style.display = isSignUp ? 'flex' : 'none';
     if (nameInput) nameInput.required = isSignUp;
 
     // Update subtitles and button text
@@ -2982,12 +3348,11 @@ async function handleGateSubmit(e) {
 
     if (currentGateMode === 'signup') {
         const name = document.getElementById('gateNameInput').value.trim();
-        const grade = document.getElementById('gateGradeInput').value;
         if (!name) return;
 
         currentUser = {
             name,
-            grade: parseInt(grade) || 7,
+            grade: 7, // Defaults internally to NPS 7B without showing grade after sign-up
             email,
             password,
             xp: currentXP,
@@ -3067,13 +3432,15 @@ async function handleGateSubmit(e) {
     }
 
     document.getElementById('authGate').classList.add('hidden');
+    navigateTo('chatbot', 'vaibs');
 }
 
 function openGateModal() {
     if (currentUser) {
-        document.getElementById('gateNameInput').value = currentUser.name;
-        document.getElementById('gateGradeInput').value = currentUser.grade;
-        document.getElementById('gateEmailInput').value = currentUser.email;
+        const nameInput = document.getElementById('gateNameInput');
+        const emailInput = document.getElementById('gateEmailInput');
+        if (nameInput) nameInput.value = currentUser.name;
+        if (emailInput) emailInput.value = currentUser.email;
     }
     setGateMode('signup');
     document.getElementById('authGate').classList.remove('hidden');
@@ -3081,82 +3448,185 @@ function openGateModal() {
 
 function applyUserData(user) {
     if (!user) return;
-    currentGrade = user.grade;
+    currentGrade = user.grade || 7;
     
-    // Update Header & Sidebar
-    document.getElementById('sidebarUserName').innerText = user.name;
-    document.getElementById('sidebarUserGrade').innerText = `Grade ${user.grade} • NPS 7B`;
-    document.getElementById('sidebarAvatar').innerText = user.name.charAt(0).toUpperCase();
-    document.getElementById('activeGradeStat').innerText = `Grade ${user.grade}`;
-    document.getElementById('panelUserBadge').innerText = `Grade ${user.grade}`;
-    document.getElementById('gradeTitle').innerText = `Grade ${user.grade} Curriculum Hub`;
+    // Update Header & Sidebar (without showing grade level after sign up)
+    const sidebarUserName = document.getElementById('sidebarUserName');
+    const sidebarUserGrade = document.getElementById('sidebarUserGrade');
+    const sidebarAvatar = document.getElementById('sidebarAvatar');
+    const chatbotHelloTitle = document.getElementById('chatbotHelloTitle');
+    const chatbotHelloSub = document.getElementById('chatbotHelloSub');
 
-    // Highlight Grade
-    document.querySelectorAll('.grade').forEach((btn, idx) => {
-        if (idx + 1 === user.grade) {
-            btn.classList.add('active');
-        } else {
-            btn.classList.remove('active');
+    if (sidebarUserName) sidebarUserName.innerText = user.name || 'Scholar';
+    if (sidebarUserGrade) sidebarUserGrade.innerText = 'Atomic Scholar • NPS 7B';
+    if (sidebarAvatar) sidebarAvatar.innerText = (user.name || 'A').charAt(0).toUpperCase();
+    
+    if (chatbotHelloTitle) {
+        chatbotHelloTitle.innerText = user.name ? `Hello, ${user.name}! 👋` : 'Hello, Scholar! 👋';
+    }
+    if (chatbotHelloSub) {
+        chatbotHelloSub.innerText = `Welcome to Vaibs AI, your personal multi-agent study companion from NPS 7B. Ask any question below or select an AI specialist.`;
+    }
+}
+
+// ----------------------------------------------------
+// FULL-PAGE NAVIGATION (CHATBOT <-> HOME VIEW)
+// ----------------------------------------------------
+let currentView = 'chatbot';
+
+function navigateTo(view, target) {
+    currentView = view;
+    const chatbotView = document.getElementById('chatbotView');
+    const homeView = document.getElementById('homeView');
+    const topNavHome = document.getElementById('topNavHome');
+    const topNavChatbot = document.getElementById('topNavChatbot');
+    const sideNavHome = document.getElementById('sideNavHome');
+    const sideNavChatbot = document.getElementById('sideNavChatbot');
+
+    if (view === 'chatbot') {
+        if (chatbotView) chatbotView.style.display = 'block';
+        if (homeView) homeView.style.display = 'none';
+
+        if (topNavChatbot) topNavChatbot.classList.add('active');
+        if (topNavHome) topNavHome.classList.remove('active');
+        if (sideNavChatbot) sideNavChatbot.classList.add('active');
+        if (sideNavHome) sideNavHome.classList.remove('active');
+
+        if (target) {
+            switchAgent(target);
         }
-    });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+        // HOME SCREEN VIEW
+        if (chatbotView) chatbotView.style.display = 'none';
+        if (homeView) homeView.style.display = 'block';
+
+        if (topNavHome) topNavHome.classList.add('active');
+        if (topNavChatbot) topNavChatbot.classList.remove('active');
+        if (sideNavHome) sideNavHome.classList.add('active');
+        if (sideNavChatbot) sideNavChatbot.classList.remove('active');
+
+        if (target) {
+            setTimeout(() => {
+                scrollToSection(target);
+            }, 50);
+        } else {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
+
+    if (window.innerWidth <= 900) {
+        const sidebar = document.getElementById('leftSidebar');
+        if (sidebar) sidebar.classList.remove('open');
+    }
 }
 
 // ----------------------------------------------------
 // MULTI-AGENT AI SYSTEM (VAIBS, AVI, ARNIE, AVANS)
 // ----------------------------------------------------
 function openAgentPanel(agentKey) {
-    switchAgent(agentKey);
-    document.getElementById('aiSidePanel').classList.add('open');
+    navigateTo('chatbot', agentKey);
 }
 
 function closeAgentPanel() {
-    document.getElementById('aiSidePanel').classList.remove('open');
+    const sidePanel = document.getElementById('aiSidePanel');
+    if (sidePanel) sidePanel.classList.remove('open');
+}
+
+function clearFullChat() {
+    const config = AGENTS[currentAgent] || AGENTS.vaibs;
+    const chat = document.getElementById('chat');
+    if (chat) {
+        chat.innerHTML = `<div class="message ai">${config.welcome}</div>`;
+    }
 }
 
 function switchAgent(agentKey) {
     currentAgent = agentKey;
     const config = AGENTS[agentKey] || AGENTS.vaibs;
 
-    // Update UI headers
-    document.getElementById('panelAgentIcon').innerText = config.icon;
-    document.getElementById('panelAgentTitle').innerText = config.title;
+    // Update Full-Page Chatbot Elements
+    const fullAvatar = document.getElementById('fullChatAvatar');
+    const fullAgentName = document.getElementById('fullChatAgentName');
+    const fullAgentSubtitle = document.getElementById('fullChatAgentSubtitle');
 
-    // Update Tabs
+    if (fullAvatar) fullAvatar.innerText = config.icon;
+    if (fullAgentName) fullAgentName.innerText = `Ask ${config.name}`;
+    if (fullAgentSubtitle) fullAgentSubtitle.innerText = config.title;
+
+    // Update Full-Page Specialist Selector Cards
+    document.querySelectorAll('.agent-spec-card').forEach(card => card.classList.remove('active'));
+    const fullActiveCard = document.getElementById(`fulltab-${agentKey}`);
+    if (fullActiveCard) fullActiveCard.classList.add('active');
+
+    // Update Side Panel Tabs if present
     document.querySelectorAll('.agent-tab').forEach(tab => tab.classList.remove('active'));
-    const activeTab = document.getElementById(`tab-${agentKey}`);
-    if (activeTab) activeTab.classList.add('active');
+    const sideTab = document.getElementById(`tab-${agentKey}`);
+    if (sideTab) sideTab.classList.add('active');
 
-    // Update Quick Chips
-    const chipsContainer = document.getElementById('agentChips');
-    chipsContainer.innerHTML = '';
-    config.chips.forEach(chip => {
-        const btn = document.createElement('button');
-        btn.className = 'pchip';
-        btn.innerHTML = chip.label;
-        btn.onclick = () => {
-            document.getElementById('aiInput').value = chip.text;
-            sendAgentMessage();
-        };
-        chipsContainer.appendChild(btn);
-    });
+    // Update Quick Chips in Full Chat
+    const fullChipsContainer = document.getElementById('fullAgentChips');
+    if (fullChipsContainer) {
+        fullChipsContainer.innerHTML = '';
+        config.chips.forEach(chip => {
+            const btn = document.createElement('button');
+            btn.className = 'pchip';
+            btn.innerHTML = chip.label;
+            btn.onclick = () => {
+                const input = document.getElementById('aiInput');
+                if (input) {
+                    input.value = chip.text;
+                    sendAgentMessage();
+                }
+            };
+            fullChipsContainer.appendChild(btn);
+        });
+    }
 
-    // Append welcome message if empty or switched
+    // Update Quick Chips in Side Panel
+    const sideChipsContainer = document.getElementById('agentChips');
+    if (sideChipsContainer) {
+        sideChipsContainer.innerHTML = '';
+        config.chips.forEach(chip => {
+            const btn = document.createElement('button');
+            btn.className = 'pchip';
+            btn.innerHTML = chip.label;
+            btn.onclick = () => {
+                const sideInput = document.getElementById('sideAiInput');
+                if (sideInput) {
+                    sideInput.value = chip.text;
+                    sendSideAgentMessage();
+                }
+            };
+            sideChipsContainer.appendChild(btn);
+        });
+    }
+
+    // Set Welcome Message
     const chat = document.getElementById('chat');
-    chat.innerHTML = `<div class="message ai">${config.welcome}</div>`;
+    if (chat) {
+        chat.innerHTML = `<div class="message ai">${config.welcome}</div>`;
+    }
 }
 
 function openSubjectWithAgent(subjectName, agentKey) {
-    openAgentPanel(agentKey);
-    document.getElementById('aiInput').value = `Explain key Grade ${currentGrade} concepts in ${subjectName} with step-by-step master points.`;
-    sendAgentMessage();
+    navigateTo('chatbot', agentKey);
+    const input = document.getElementById('aiInput');
+    if (input) {
+        input.value = `Explain key concepts in ${subjectName} with step-by-step master points.`;
+        sendAgentMessage();
+    }
 }
 
 async function sendAgentMessage() {
     const input = document.getElementById('aiInput');
+    if (!input) return;
     const msg = input.value.trim();
     if (!msg) return;
 
     const chat = document.getElementById('chat');
+    if (!chat) return;
+
     const userDiv = document.createElement('div');
     userDiv.className = 'message user';
     userDiv.innerText = msg;
@@ -3195,35 +3665,60 @@ async function sendAgentMessage() {
     chat.scrollTop = chat.scrollHeight;
 }
 
-// ----------------------------------------------------
-// GRADE SELECTOR & APP NAVIGATION
-// ----------------------------------------------------
-function selectGrade(gradeNum, el) {
-    currentGrade = gradeNum;
-    document.querySelectorAll('.grade').forEach(g => g.classList.remove('active'));
-    if (el) el.classList.add('active');
-    
-    document.getElementById('activeGradeStat').innerText = `Grade ${gradeNum}`;
-    document.getElementById('panelUserBadge').innerText = `Grade ${gradeNum}`;
-    document.getElementById('gradeTitle').innerText = `Grade ${gradeNum} Curriculum Hub`;
+async function sendSideAgentMessage() {
+    const input = document.getElementById('sideAiInput');
+    if (!input) return;
+    const msg = input.value.trim();
+    if (!msg) return;
 
-    if (currentUser) {
-        currentUser.grade = gradeNum;
-        localStorage.setItem('atomic_student_user', JSON.stringify(currentUser));
-        document.getElementById('sidebarUserGrade').innerText = `Grade ${gradeNum} • NPS 7B`;
-        syncUserToFirestore(currentUser);
+    const chat = document.getElementById('sideChat');
+    if (!chat) return;
+
+    const userDiv = document.createElement('div');
+    userDiv.className = 'message user';
+    userDiv.innerText = msg;
+    chat.appendChild(userDiv);
+    input.value = '';
+    chat.scrollTop = chat.scrollHeight;
+
+    const aiDiv = document.createElement('div');
+    aiDiv.className = 'message ai';
+    aiDiv.innerHTML = `⚡ <em>${AGENTS[currentAgent].name} is analyzing...</em>`;
+    chat.appendChild(aiDiv);
+    chat.scrollTop = chat.scrollHeight;
+
+    try {
+        const res = await fetch('/api/tutor', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                message: msg,
+                agent: currentAgent,
+                studentName: currentUser ? currentUser.name : 'Student',
+                studentGrade: currentGrade
+            })
+        });
+
+        const data = await res.json();
+        aiDiv.innerHTML = renderFormattedContent(data.reply || 'No response generated.');
+        addXP(25);
+    } catch (err) {
+        aiDiv.innerHTML = `⚠️ <strong>Connection Notice</strong>: Could not reach the AI agent service.`;
     }
-
-    addXP(15);
+    chat.scrollTop = chat.scrollHeight;
 }
 
+// ----------------------------------------------------
+// NAVIGATION HELPERS & XP
+// ----------------------------------------------------
 function scrollToSection(id) {
     const el = document.getElementById(id);
     if (el) {
         el.scrollIntoView({ behavior: 'smooth' });
     }
     if (window.innerWidth <= 900) {
-        document.getElementById('leftSidebar').classList.remove('open');
+        const sidebar = document.getElementById('leftSidebar');
+        if (sidebar) sidebar.classList.remove('open');
     }
 }
 
@@ -3232,17 +3727,22 @@ function scrollToTop() {
 }
 
 function toggleSidebar() {
-    document.getElementById('leftSidebar').classList.toggle('open');
+    const sidebar = document.getElementById('leftSidebar');
+    if (sidebar) sidebar.classList.toggle('open');
 }
 
 function showSearch() {
     const s = document.getElementById('searchBox');
-    s.style.display = s.style.display === 'none' ? 'block' : 'none';
-    if (s.style.display === 'block') s.focus();
+    if (s) {
+        s.style.display = s.style.display === 'none' ? 'block' : 'none';
+        if (s.style.display === 'block') s.focus();
+    }
 }
 
 function filterSubjects() {
-    const query = document.getElementById('searchBox').value.toLowerCase();
+    const searchBox = document.getElementById('searchBox');
+    if (!searchBox) return;
+    const query = searchBox.value.toLowerCase();
     const subs = document.querySelectorAll('.subject');
     subs.forEach(sub => {
         const searchTerms = sub.getAttribute('data-search') || '';
@@ -3257,8 +3757,10 @@ function filterSubjects() {
 
 function addXP(amount) {
     currentXP += amount;
-    document.getElementById('xp').innerText = currentXP.toLocaleString();
-    document.getElementById('xpHeader').innerText = currentXP.toLocaleString();
+    const xpEl = document.getElementById('xp');
+    const xpHeaderEl = document.getElementById('xpHeader');
+    if (xpEl) xpEl.innerText = currentXP.toLocaleString();
+    if (xpHeaderEl) xpHeaderEl.innerText = currentXP.toLocaleString();
     if (currentUser) {
         currentUser.xp = currentXP;
         localStorage.setItem('atomic_student_user', JSON.stringify(currentUser));
@@ -3304,20 +3806,25 @@ const quizQuestions = [
 
 function loadQuiz() {
     const qData = quizQuestions[currentQuizIndex % quizQuestions.length];
-    document.getElementById('quizNumber').innerText = `QUESTION 0${(currentQuizIndex % quizQuestions.length) + 1} / 0${quizQuestions.length}`;
-    document.getElementById('question').innerText = qData.q;
-    
+    const quizNumber = document.getElementById('quizNumber');
+    const question = document.getElementById('question');
     const ansContainer = document.getElementById('answers');
-    ansContainer.innerHTML = '';
-    document.getElementById('quizResult').innerText = '';
+    const quizResult = document.getElementById('quizResult');
 
-    qData.options.forEach((opt, idx) => {
-        const btn = document.createElement('button');
-        btn.className = 'answer';
-        btn.innerHTML = `<span style="color:var(--neon-blue);font-weight:bold">0${idx+1}.</span> <span>${opt}</span>`;
-        btn.onclick = () => handleAnswer(idx, qData, btn);
-        ansContainer.appendChild(btn);
-    });
+    if (quizNumber) quizNumber.innerText = `QUESTION 0${(currentQuizIndex % quizQuestions.length) + 1} / 0${quizQuestions.length}`;
+    if (question) question.innerText = qData.q;
+    if (ansContainer) ansContainer.innerHTML = '';
+    if (quizResult) quizResult.innerText = '';
+
+    if (ansContainer) {
+        qData.options.forEach((opt, idx) => {
+            const btn = document.createElement('button');
+            btn.className = 'answer';
+            btn.innerHTML = `<span style="color:var(--neon-blue);font-weight:bold">0${idx+1}.</span> <span>${opt}</span>`;
+            btn.onclick = () => handleAnswer(idx, qData, btn);
+            ansContainer.appendChild(btn);
+        });
+    }
 }
 
 function handleAnswer(selectedIdx, qData, btnElement) {
@@ -3327,15 +3834,17 @@ function handleAnswer(selectedIdx, qData, btnElement) {
     const isCorrect = selectedIdx === qData.correct;
     if (isCorrect) {
         btnElement.classList.add('correct');
-        document.getElementById('quizResult').innerHTML = `✨ <strong>Excellent!</strong> ${qData.explanation}`;
+        const quizResult = document.getElementById('quizResult');
+        if (quizResult) quizResult.innerHTML = `✨ <strong>Excellent!</strong> ${qData.explanation}`;
         addXP(100);
         if (window.confetti) {
             confetti({ particleCount: 50, spread: 60, origin: { y: 0.8 } });
         }
     } else {
         btnElement.classList.add('wrong');
-        allAnswers[qData.correct].classList.add('correct');
-        document.getElementById('quizResult').innerHTML = `💡 <strong>Review</strong>: ${qData.explanation}`;
+        if (allAnswers[qData.correct]) allAnswers[qData.correct].classList.add('correct');
+        const quizResult = document.getElementById('quizResult');
+        if (quizResult) quizResult.innerHTML = `💡 <strong>Review</strong>: ${qData.explanation}`;
     }
 
     // Log score to Firebase Firestore
@@ -3348,22 +3857,22 @@ function handleAnswer(selectedIdx, qData, btnElement) {
 }
 
 function openGame(type) {
+    navigateTo('chatbot', type === 'speed' ? 'avi' : 'vaibs');
+    const input = document.getElementById('aiInput');
     if (type === 'speed') {
-        openAgentPanel('avi');
-        document.getElementById('aiInput').value = 'Generate 3 rapid speed math challenges for Grade ' + currentGrade;
+        if (input) input.value = 'Generate 3 rapid speed math challenges for NPS Class 7B';
         sendAgentMessage();
     } else if (type === 'memory') {
-        openAgentPanel('vaibs');
-        document.getElementById('aiInput').value = 'Create a 4-card memory match formula challenge for Grade ' + currentGrade;
+        if (input) input.value = 'Create a 4-card memory match formula challenge';
         sendAgentMessage();
     }
 }
 
-// INITIALIZE ON LOAD
+// INITIALIZE ON LOAD: WEBSITE OPENS IN THE VAIBS CHATBOT BY DEFAULT
 document.addEventListener('DOMContentLoaded', () => {
     initFirebase();
     checkAuthOnLoad();
-    switchAgent('vaibs');
+    navigateTo('chatbot', 'vaibs');
     loadQuiz();
 });
 </script>

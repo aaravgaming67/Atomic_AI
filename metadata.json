@@ -1,7 +1,10 @@
 {
-  "name": "Atomic - AI Study & Educational Games",
-  "description": "Master every subject at atomic speed with personalized AI tutoring, interactive educational mini-games, and study analytics. Created by Aarav, Vaibhav, and Aarnav from NPS Class 7B.",
-  "requestFramePermissions": [],
+  "name": "Learnova - Learn Together",
+  "description": "The unified school learning platform featuring homework, marks, fee tracking, notes, quizzes, teacher queries, study groups, real-time calls, and Nova AI.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
   "majorCapabilities": [
     "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
   ]
