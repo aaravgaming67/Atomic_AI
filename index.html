@@ -3164,13 +3164,14 @@ function renderFormattedContent(text) {
 }
 
 // ----------------------------------------------------
-// STARFIELD & COMET ANIMATION ENGINE
+// ENHANCED COSMIC STARFIELD, CONSTELLATIONS & COMETS ENGINE
 // ----------------------------------------------------
 const starCanvas = document.getElementById('starCanvas');
 const ctx = starCanvas.getContext('2d');
 
 let stars = [];
 let comets = [];
+let mouse = { x: -1000, y: -1000, active: false };
 let width = (starCanvas.width = window.innerWidth);
 let height = (starCanvas.height = window.innerHeight);
 
@@ -3180,30 +3181,46 @@ window.addEventListener('resize', () => {
     initStars();
 });
 
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    mouse.active = true;
+});
+
+window.addEventListener('mouseleave', () => {
+    mouse.active = false;
+});
+
 function initStars() {
     stars = [];
-    const count = Math.floor((width * height) / 2500);
+    const count = Math.min(220, Math.floor((width * height) / 4500));
     for (let i = 0; i < count; i++) {
+        const depth = Math.random(); // 0: far, 1: near
         stars.push({
             x: Math.random() * width,
             y: Math.random() * height,
-            radius: Math.random() * 1.5 + 0.5,
-            color: '#ffffff',
-            alpha: Math.random() * 0.85 + 0.15,
-            twinkleSpeed: Math.random() * 0.02 + 0.005,
-            phase: Math.random() * Math.PI * 2
+            vx: (Math.random() - 0.5) * 0.25 * (depth + 0.5),
+            vy: (Math.random() - 0.5) * 0.25 * (depth + 0.5),
+            baseRadius: depth > 0.8 ? Math.random() * 1.5 + 1.2 : (depth > 0.4 ? Math.random() * 0.9 + 0.7 : Math.random() * 0.5 + 0.4),
+            radius: 1,
+            alpha: Math.random() * 0.7 + 0.25,
+            twinkleSpeed: Math.random() * 0.03 + 0.008,
+            phase: Math.random() * Math.PI * 2,
+            depth: depth
         });
     }
 }
 
 function spawnComet() {
+    const startX = Math.random() * width * 0.8;
+    const speed = Math.random() * 5 + 4;
     comets.push({
-        x: Math.random() * width * 0.85,
-        y: -40,
-        vx: Math.random() * 4.5 + 3,
-        vy: Math.random() * 4.5 + 3,
-        length: Math.random() * 110 + 90,
-        width: Math.random() * 2.2 + 1.6,
+        x: startX,
+        y: -30,
+        vx: speed * 0.85,
+        vy: speed,
+        length: Math.random() * 130 + 100,
+        width: Math.random() * 2.2 + 1.8,
         alpha: 1,
         color: '#ffffff'
     });
@@ -3211,33 +3228,92 @@ function spawnComet() {
 
 // Periodic comet spawn
 setInterval(() => {
-    if (Math.random() > 0.3) spawnComet();
-}, 3000);
+    if (Math.random() > 0.35) spawnComet();
+}, 2600);
 
 function animateCosmos() {
     ctx.clearRect(0, 0, width, height);
 
-    // Draw White Stars
-    for (let s of stars) {
-        s.phase += s.twinkleSpeed;
-        const a = s.alpha + Math.sin(s.phase) * 0.3;
-        ctx.globalAlpha = Math.max(0.1, Math.min(1, a));
-        ctx.fillStyle = s.color;
-        ctx.shadowColor = '#ffffff';
-        ctx.shadowBlur = s.radius > 1.2 ? 6 : 0;
+    // 1. Mouse Ambient Radial Glow
+    if (mouse.active) {
+        const mGrad = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, 220);
+        mGrad.addColorStop(0, 'rgba(255, 255, 255, 0.045)');
+        mGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0.015)');
+        mGrad.addColorStop(1, 'transparent');
+        ctx.fillStyle = mGrad;
         ctx.beginPath();
-        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.arc(mouse.x, mouse.y, 220, 0, Math.PI * 2);
         ctx.fill();
     }
 
-    // Draw White Comets
+    // 2. Constellation Lines between nearby stars
+    ctx.lineWidth = 0.5;
+    for (let i = 0; i < stars.length; i++) {
+        for (let j = i + 1; j < stars.length; j++) {
+            const dx = stars[i].x - stars[j].x;
+            const dy = stars[i].y - stars[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 75) {
+                const lineAlpha = (1 - dist / 75) * 0.12 * stars[i].alpha * stars[j].alpha;
+                ctx.strokeStyle = `rgba(255, 255, 255, ${lineAlpha})`;
+                ctx.beginPath();
+                ctx.moveTo(stars[i].x, stars[i].y);
+                ctx.lineTo(stars[j].x, stars[j].y);
+                ctx.stroke();
+            }
+        }
+    }
+
+    // 3. Stars Drawing and Movement
+    for (let s of stars) {
+        s.x += s.vx;
+        s.y += s.vy;
+
+        // Wrap around boundaries
+        if (s.x < 0) s.x = width;
+        if (s.x > width) s.x = 0;
+        if (s.y < 0) s.y = height;
+        if (s.y > height) s.y = 0;
+
+        // Mouse gentle interaction
+        if (mouse.active) {
+            const mdx = s.x - mouse.x;
+            const mdy = s.y - mouse.y;
+            const mDist = Math.sqrt(mdx * mdx + mdy * mdy);
+            if (mDist < 120 && mDist > 0) {
+                const force = (120 - mDist) / 120 * 0.4;
+                s.x += (mdx / mDist) * force;
+                s.y += (mdy / mDist) * force;
+            }
+        }
+
+        s.phase += s.twinkleSpeed;
+        const currentAlpha = Math.max(0.1, Math.min(1, s.alpha + Math.sin(s.phase) * 0.35));
+
+        ctx.globalAlpha = currentAlpha;
+        ctx.fillStyle = '#ffffff';
+
+        // Outer soft glow for bright stars
+        if (s.depth > 0.75) {
+            ctx.shadowColor = '#ffffff';
+            ctx.shadowBlur = 8;
+        } else {
+            ctx.shadowBlur = 0;
+        }
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.baseRadius, 0, Math.PI * 2);
+        ctx.fill();
+    }
+
+    // 4. Draw Comets / Shooting Stars
     for (let i = comets.length - 1; i >= 0; i--) {
         const c = comets[i];
         c.x += c.vx;
         c.y += c.vy;
-        c.alpha -= 0.008;
+        c.alpha -= 0.009;
 
-        if (c.alpha <= 0 || c.x > width + 100 || c.y > height + 100) {
+        if (c.alpha <= 0 || c.x > width + 150 || c.y > height + 150) {
             comets.splice(i, 1);
             continue;
         }
@@ -3247,25 +3323,25 @@ function animateCosmos() {
 
         const grad = ctx.createLinearGradient(c.x, c.y, tailX, tailY);
         grad.addColorStop(0, '#ffffff');
-        grad.addColorStop(0.3, 'rgba(255, 255, 255, 0.8)');
+        grad.addColorStop(0.3, 'rgba(255, 255, 255, 0.75)');
         grad.addColorStop(1, 'transparent');
 
-        ctx.globalAlpha = c.alpha;
+        ctx.globalAlpha = Math.max(0, c.alpha);
         ctx.strokeStyle = grad;
         ctx.lineWidth = c.width;
         ctx.lineCap = 'round';
         ctx.shadowColor = '#ffffff';
-        ctx.shadowBlur = 15;
+        ctx.shadowBlur = 16;
 
         ctx.beginPath();
         ctx.moveTo(c.x, c.y);
         ctx.lineTo(tailX, tailY);
         ctx.stroke();
 
-        // Comet glowing white head
+        // Glowing Comet Nucleus
         ctx.fillStyle = '#ffffff';
         ctx.beginPath();
-        ctx.arc(c.x, c.y, c.width * 1.4, 0, Math.PI * 2);
+        ctx.arc(c.x, c.y, c.width * 1.5, 0, Math.PI * 2);
         ctx.fill();
     }
 
