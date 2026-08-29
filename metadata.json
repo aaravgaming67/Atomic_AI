@@ -1,0 +1,8 @@
+{
+  "name": "Atomic - AI Study & Educational Games",
+  "description": "Master every subject at atomic speed with personalized AI tutoring, interactive educational mini-games, and study analytics. Created by Aarav, Vaibhav, and Aarnav from NPS Class 7B.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
