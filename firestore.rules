@@ -1,0 +1,32 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection
+    match /users/{userId} {
+      allow read, write: if true; // Allow client sync for learning profiles
+    }
+
+    // Scores & Leaderboards
+    match /scores/{scoreId} {
+      allow read, write: if true;
+    }
+
+    // Activities & Progress
+    match /activities/{activityId} {
+      allow read, write: if true;
+    }
+
+    // Default match
+    match /{document=**} {
+      allow read, write: if true;
+    }
+  }
+}

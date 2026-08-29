@@ -1,0 +1,37 @@
+{
+  "entities": {
+    "User": {
+      "collection": "users",
+      "fields": {
+        "id": "string",
+        "name": "string",
+        "email": "string",
+        "grade": "number",
+        "xp": "number",
+        "createdAt": "string",
+        "lastLoginAt": "string"
+      }
+    },
+    "Score": {
+      "collection": "scores",
+      "fields": {
+        "id": "string",
+        "userId": "string",
+        "studentName": "string",
+        "game": "string",
+        "score": "number",
+        "timestamp": "string"
+      }
+    },
+    "Activity": {
+      "collection": "activities",
+      "fields": {
+        "id": "string",
+        "userId": "string",
+        "type": "string",
+        "details": "string",
+        "timestamp": "string"
+      }
+    }
+  }
+}

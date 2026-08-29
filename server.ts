@@ -41,10 +41,10 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
 });
 
-// AI Tutor endpoint
+// AI Tutor endpoint - Supporting 4 Agents: Vaibs, Avi, Arnie, Avans
 app.post('/api/tutor', async (req, res) => {
   try {
-    const { message, persona, systemPrompt } = req.body;
+    const { message, agent, studentName, studentGrade, systemPrompt } = req.body;
 
     if (!message || typeof message !== 'string') {
       res.status(400).json({ error: 'Message is required and must be a string.' });
@@ -52,20 +52,66 @@ app.post('/api/tutor', async (req, res) => {
     }
 
     const ai = getGenAI();
+    const activeAgent = (agent || 'vaibs').toLowerCase();
+    const name = studentName || 'Student';
+    const grade = studentGrade ? `Grade ${studentGrade}` : 'Grade 7';
+
+    // Agent persona definitions
+    const agentProfiles: Record<string, { name: string; title: string; instruction: string }> = {
+      vaibs: {
+        name: 'Vaibs',
+        title: 'Study Master (Notes, Quizzes, Flashcards)',
+        instruction: `You are "Vaibs", the Chief Study Strategist, Notes Master, and Quiz Specialist for school students (${grade}). 
+You specialize in creating ultra-crisp revision notes, summary bullet points, custom flashcards, and quick concept quizzes.
+Keep your tone enthusiastic, organized, and motivating. 
+Format math cleanly using readable Unicode powers like x², y³, square roots √, and bold highlights. Never output messy raw unparsed LaTeX. Output clean bullet points, numbered lists, and interactive quiz/flashcard formats.`,
+      },
+      avi: {
+        name: 'Avi',
+        title: 'STEM & Languages Genius (Math, Science, Coding, English)',
+        instruction: `You are "Avi", the STEM and Languages Genius for school students (${grade}). 
+You specialize in Mathematics (algebra, geometry, calculus, arithmetic), Computer Science (Python, algorithms, web dev), Science (Physics, Chemistry, Biology), English grammar/literature, and global languages.
+Provide step-by-step mathematical proofs with crystal clear breakdown:
+- State the formula or identity clearly
+- Show each calculation step explicitly
+- Write exponents with Unicode (e.g. 67² = 4,489, (a+b)² = a² + 2ab + b²) rather than raw unparsed LaTeX
+- Conclude with the final bold result.`,
+      },
+      arnie: {
+        name: 'Arnie',
+        title: 'Cosmic Explorer (Social Studies, GK, Art & Design)',
+        instruction: `You are "Arnie", the World Explorer and Creative Curator for school students (${grade}). 
+You specialize in Social Studies (History, Geography, Civics, World Civilizations), General Knowledge, space trivia, Art & Design principles, visual creativity, and cultural facts.
+Explain historical events like an epic story, unpack geographic phenomena with clarity, and share fun trivia facts that make studying unforgettable!`,
+      },
+      avans: {
+        name: 'Avans',
+        title: 'Logic & Riddle Master (Critical Thinking & Puzzles)',
+        instruction: `You are "Avans", the Master of Logic, Riddles, and Brain Workouts for school students (${grade}). 
+You specialize in logical deduction, algorithmic thinking, number patterns, word puzzles, chess tactics, and critical reasoning.
+Break down logic problems step by step, challenge the student with thought-provoking questions, and guide them to the "aha!" moment!`,
+      },
+    };
+
+    const selectedProfile = agentProfiles[activeAgent] || agentProfiles.vaibs;
 
     if (!ai) {
-      // Graceful academic fallback when API key is not configured
-      const fallbackReply = `⚡ **Instant Solver (Offline Mode)**:\n\n` +
-        `• **Topic**: ${message}\n` +
-        `• **Breakdown**: For detailed AI-generated step-by-step proofs and live solutions, configure your \`GEMINI_API_KEY\` in the Settings menu.\n` +
-        `• **Tip**: Explore our curated curriculum capsules and arcade mini-games to practice!`;
-      res.json({ reply: fallbackReply });
+      // Graceful offline fallback
+      let fallbackText = `⚡ **${selectedProfile.name} (${selectedProfile.title})**:\n\n` +
+        `Hello **${name}**! You asked about: **${message}** for ${grade}.\n\n` +
+        `• **Step-by-Step Guide**: When connected to Gemini AI (configure \`GEMINI_API_KEY\` in Settings), I provide instant step-by-step solutions, custom quizzes, and interactive proofs.\n` +
+        `• **Pro Tip**: Try asking me to create a 3-question practice quiz or explain an algebraic identity like (a + b)² = a² + 2ab + b²!`;
+
+      res.json({ reply: fallbackText, agent: selectedProfile.name });
       return;
     }
 
     const instruction =
       systemPrompt ||
-      `You are ${persona || 'ATOMIC AI Study Tutor'}, a brilliant, encouraging, and ultra-fast STEM tutor for school students (NPS Class 7B curriculum). Give clear, step-by-step explanations, formatted formulas, and intuitive bullet points.`;
+      `${selectedProfile.instruction}
+Student Name: ${name}
+Target Grade: ${grade}
+Format math with clean Unicode (e.g. 60² = 3,600, 2 × 60 × 7 = 840, 7² = 49, Total = 4,489). Avoid raw LaTeX symbols like dollar signs or \\mathbf. Always provide an easy-to-read, high-contrast, structured response.`;
 
     const response = await ai.models.generateContent({
       model: 'gemini-3.7-flash',
@@ -75,12 +121,12 @@ app.post('/api/tutor', async (req, res) => {
       },
     });
 
-    const reply = response.text || 'No response received from the tutor model.';
-    res.json({ reply });
+    const reply = response.text || `No response received from ${selectedProfile.name}.`;
+    res.json({ reply, agent: selectedProfile.name });
   } catch (error: any) {
-    console.error('Error generating tutor response:', error);
+    console.error('Error generating AI Agent response:', error);
     res.status(500).json({
-      error: 'Failed to generate tutor response',
+      error: 'Failed to generate agent response',
       message: error?.message || String(error),
     });
   }
